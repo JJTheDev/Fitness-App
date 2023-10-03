@@ -21,7 +21,11 @@ header img {
   height: 50px;
   width: auto;
   border-radius: 5px;
-  margin-right: 5px;
+  margin-left: 1%;
+}
+
+main {
+  padding: 2%;
 }
 
 .choice {
@@ -46,14 +50,17 @@ header img {
 
 
 
-/* body {
-padding-bottom: 0px;
-margin: 0;
-
-background-size: cover;
-background-repeat: no-repeat;
-}  */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 
+@media only screen and (max-width: 850px) {
+  .health-options {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-
+}
