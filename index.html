@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Healthy Panda</title>
     <!-- Figure out how to use tailwind -->
@@ -12,28 +14,74 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-    <div >
+<body class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col">
+    <div>
+        <header class=" h-20 bg-gradient-to-r from-sky-400 to-indigo-800 text-5xl text-center  text-green-300 font-serif" style="height: 100px; padding: 1%">
+                
+                <h1>Healthy Panda</h1>
+                <img src="./cute-panda-eat-bamboo-illustration-vector.jpeg">
+        </header>
+        <img src="./headbandpanda.PNG" alt=""  class="w-40 float-right">
+
+        <main class="">
+
+            <div class=" flex justify-center text-3xl  py-20  ">
+                <h2>How would you like to improve your life today?</h2>
+            </div>
+
+
+            <div class=" flex  flex-row  items-center space-x-4" style="justify-content: center;">
+
         
-    
+                <div class="choice flex flex-col  justify-center  transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300">
+                    <div class=" border text-3xl py-8 max-w-screen-md shadow-2xl h-72  text-center">
+                        <h3>HEALTHY RECEIPES</h3>
+                        <p class= "text-sm"> Find and save healthy recipes just for you.</p>
+                    </div>
+
+                   <a  class="bg-sky-300 mt-6 h-10" style="margin: auto; width: 100%; text-align: center; height: auto" href="./recipes/recipes.html"><button class="recipes" style="padding: 2%;">RECEIPES</button></a>
+
+                </div>
 
 
-    <header>
-        <h1>Healthy Panda</h1>
-    </header>
+                <div class="choice flex flex-col  justify-center  transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300">
+                    <div class=" border text-3xl py-8 max-w-screen-md shadow-2xl h-72 text-center ">
+                        <h3>WORKOUTS</h3>
+                        <p class= "text-sm"> Find and save workouts that will help you get in shape.</p>
+                    </div>
+ 
 
-    <main>
-        <h2>How would you like to improve your life today?</h2>
-        <h3>Find healthy recipes or workouts for what you need.</h3>
-        <div class="health-choices">
-            <button class="recipes">Recipes</button>
-            <button class="workouts">Workouts</button>
-        </div>
+                <img src="./eatingpanda.PNG" alt=""  class="w-40 float-right">
+
+                <div class="flex flex-col  justify-center  transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300     ">
+                    <h3 class=" border text-3xl py-8 max-w-screen-md shadow-2xl h-72 text-center ">WORKOUTS
+                        <p class="text-sm"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus a illo, odit, non pariatur nam laudantium excepturi, quasi ipsum amet debitis quisquam placeat dolor accusantium consequatur sit fuga minus nisi?</p>
+                    </h3>
+
+
+                   <a  class="bg-sky-300   mt-6 h-10" style="margin: auto; width: 100%; text-align: center; height: auto" href="./exercise/exercise.html"><button class="workout" style="padding: 2%;">WORKOUTS</button></a>
+                </div>
+
+
+                <div class="health-choices">
+
+
+                </div>
+            </div>
+    </div>
+    </div>
     </main>
 
-    <footer>
-        <h5>©Team 15 2023</h5>
+    <footer class="flex flex-col  text-center  py-20">
+
+        <div>
+            <!-- <img src="./cute-panda-eat-bamboo-illustration-vector.jpeg" alt=""   class="panda-img"> -->
+        </div>
+
+
+        <h5>©Team Panda &#9829; </h5>
     </footer>
+
 
 
 </html>
