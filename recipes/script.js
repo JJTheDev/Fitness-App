@@ -13,27 +13,32 @@ function searchRecipes(query) {
       const recipes = response.data.hits;
       // Display each recipe in a card
       recipes.forEach(recipe => {
-        const ingredients = recipe.recipe.ingredients
 
-      ingredients.forEach(item => {
-        console.log(">>", item.text)
-
-      })
-
+        console.log(">>", recipe.recipe)
         const card = $(
           ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <img class="rounded-t-lg" style="width: 100%" src="${recipe.recipe.image}" alt="${recipe.recipe.label}" />
               <div class="p-5">
+
+              <div style="height: 150px">
                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${recipe.recipe.label}</h5>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${recipe.recipe.ingredients.text}</p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${recipe.recipe.cuisineType}, ${recipe.recipe.dietLabels}</p>
+                </div>
+
+                <div>
+                <a href="${recipe.recipe.url}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.uri}')">
+                See How To Cook</button></a>
                 <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.uri}')">
                   Save</button>
+                </div>
+                
               </div>
             </div>`
-            );
+            );            
 
         $('.search-results').append(card);
       });
+      
     })
     .catch(error => {
       console.error('Error fetching recipes:', error);
