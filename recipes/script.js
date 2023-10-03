@@ -1,34 +1,54 @@
-var submitButton = document.getElementById('submit-button');
+// Updated Edamam API credentials
+const applicationId = '168c1e74';
+const apiKey = '252f0cab761765dc3b9d527495b7d90a';
 
-function getApi() {
-  var requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&app_id=6ae8c73f&app_key=71480f0c50158929fad3cba79c8b94b4';
+// Function to search for recipes
+function searchRecipes(query) {
+  // Clear previous search results
+  $('.search-results').empty();
 
-  fetch(requestUrl)
-    .then(function (response)  {
-      return response.json();
+  // Make a request to the Edamam API
+  axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${applicationId}&app_key=${apiKey}`)
+    .then(response => {
+      const recipes = response.data.hits;
+
+      // Display each recipe in a card
+      recipes.forEach(recipe => {
+        const card = $(`<div class="card">
+          <div class="card-title">${recipe.recipe.label}</div>
+          <div class="card-content">
+            <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
+            <p>${recipe.recipe.summary}</p>
+          </div>
+          <button onClick="saveRecipe('${recipe.recipe.uri}')">Save</button>
+        </div>`);
+
+        $('.search-results').append(card);
+      });
     })
-    .then(function (data) {
-      console.log(data);
-    }
-    )};
-  
-  submitButton.addEventListener('click', getApi);
+    .catch(error => {
+      console.error('Error fetching recipes:', error);
+    });
+}
 
-// TOGGLE DISPLAY FUNCTIONS
+// Function to save a recipe
+function saveRecipe(uri) {
+  // TODO: Implement this function to save the recipe to the user's favorites or to try
+  // You can use the recipe URI as a unique identifier for the recipe
+}
+
+// Toggle display of favorites section
 function toggleFavorites() {
-    var content = document.querySelector(".saved-favorites");
-    if (content.style.display === "none") {
-      content.style.display = "block";
-    } else {
-      content.style.display = "none";
-    }
-  }
+  $('.saved-favorites').toggle();
+}
 
-  function toggleTry() {
-    var content = document.querySelector(".saved-try");
-    if (content.style.display === "none") {
-      content.style.display = "block";
-    } else {
-      content.style.display = "none";
-    }
-  }
+// Toggle display of try section
+function toggleTry() {
+  $('.saved-try').toggle();
+}
+
+// Event listener for search button click
+$('#submit-button').click(function() {
+  const searchInput = $('.search-bar input').val();
+  searchRecipes(searchInput);
+});
