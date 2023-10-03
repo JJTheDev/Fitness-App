@@ -24,6 +24,25 @@ header img {
   margin-right: 5px;
 }
 
+.choice {
+  height: auto;
+  justify-content: center;
+  text-align: center;
+  height: 300px;
+  width: 500px;
+  margin: 2%;
+}
+
+.choice div {
+  padding: 2%;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.choice div p {
+  padding: 2%;
+}
 
 
 
