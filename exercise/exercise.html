@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Healthy Panda</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -20,12 +20,13 @@
         <h2>What do you want to work out today?</h2>
 
         <!-- RECIPE FAVORITES SAVED -->
-        <!-- <div class="completed-workouts" onClick="toggleCompleted()" style="cursor: pointer;"> -->
-        <div class="completed-workouts toggle-content" style="cursor: pointer;">
-            <h3>Completed Workouts:</h3>
+        <div class="completed-workouts" style="cursor: pointer;">
+            <div class=" toggle-content">
+                <h3>Completed Workouts:</h3>
+            </div>
 
             <!-- USER SAVED FAVORITES CARDS -->
-            <div class="saved-completed display-content" style="display: none;">
+            <div class="saved-completed" style="display: none;">
                 <div class="card">
                     <div class="card-title">Card 1 Title</div>
                     <div class="card-content">
@@ -37,11 +38,13 @@
 
         <!-- workouts SAVED TO TRY -->
         <!-- <div class="try" onClick="toggleTry()" style="cursor: pointer;"> -->
-            <div class="try toggle-content" style="cursor: pointer;">
-            <h3>Saved Workouts:</h3>
+        <div class="try" style="cursor: pointer;">
+            <div class=" toggle-content">
+                <h3>Saved Workouts:</h3>
+            </div>
 
             <!-- USER SAVED TO TRY CARDS -->
-            <div class="saved-try display-content" style="display: none;">
+            <div class="saved-try" style="display: none;">
                 <div class="card">
                     <div class="card-title">Card 1 Title</div>
                     <div class="card-content">
@@ -53,29 +56,36 @@
         </div>
 
         <div class="workouts">
-            <div class="toggle-content" id="cardio" style="cursor: pointer;">
-                <h2>Cardio</h2>
-                <div id="cardio-results display-content"></div>
-                <form action="">
-                    <select name="search-format" id="search-format">
-                      <option value="">--Please choose a difficulty level--</option>
-                      <option value="beginner">beginner</option>
-                      <option value="intermediate">intermediate</option>
-                      <option value="expert">expert</option>
-                    </select>
-                    <button type='submit' id="submit-button">Click Me</button>
-                  </form>
-                <div class=" display-content" id="cardio-results" style="display: none;"></div>
+            <div id="cardio" style="cursor: pointer;">
+                <div class="toggle-content">
+                    <h2>Cardio</h2>
+                </div>
+
+                <div id="cardio-results" style="display: none;">
+                    <form action="">
+                        <select name="search-format" id="search-format">
+                            <option value="">--Please choose a difficulty level--</option>
+                            <option value="beginner">beginner</option>
+                            <option value="intermediate">intermediate</option>
+                            <option value="expert">expert</option>
+                        </select>
+                        <button type='submit' id="submit-button">Click Me</button>
+                    </form>
+                </div>
             </div>
 
-            <div class="toggle-content" id="strength" style="cursor: pointer;">
-                <h2>Strength</h2>
-                <div class=" display-content" id="strength-results" style="display: none;"></div>
+            <div id="strength" style="cursor: pointer;">
+                <div class="toggle-content">
+                    <h2>Strength</h2>
+                </div>
+                <div id="strength-results" style="display: none;"></div>
             </div>
 
-            <div class="toggle-content" id="stretching" style="cursor: pointer;">
-                <h2>Stretching</h2>
-                <div class=" display-content" id="stretching-results" style="display: none;"></div>
+            <div id="stretching" style="cursor: pointer;">
+                <div class="toggle-content">
+                    <h2>Stretching</h2>
+                </div>
+                <div id="stretching-results" style="display: none;"></div>
             </div>
         </div>
     </main>
