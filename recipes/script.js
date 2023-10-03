@@ -14,7 +14,6 @@ function searchRecipes(query) {
       // Display each recipe in a card
       recipes.forEach(recipe => {
 
-        console.log(">>", recipe.recipe)
         const card = $(
           ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <img class="rounded-t-lg" style="width: 100%" src="${recipe.recipe.image}" alt="${recipe.recipe.label}" />
