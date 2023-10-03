@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Healthy Panda</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-
 </head>
 
 <body>
@@ -21,11 +20,12 @@
         <h2>What do you want to work out today?</h2>
 
         <!-- RECIPE FAVORITES SAVED -->
-        <div class="completed-workouts" onClick="toggleCompleted()" style="cursor: pointer;">
+        <!-- <div class="completed-workouts" onClick="toggleCompleted()" style="cursor: pointer;"> -->
+        <div class="completed-workouts toggle-content" style="cursor: pointer;">
             <h3>Completed Workouts:</h3>
 
             <!-- USER SAVED FAVORITES CARDS -->
-            <div class="saved-completed" style="display: none;">
+            <div class="saved-completed display-content" style="display: none;">
                 <div class="card">
                     <div class="card-title">Card 1 Title</div>
                     <div class="card-content">
@@ -36,11 +36,12 @@
         </div>
 
         <!-- workouts SAVED TO TRY -->
-        <div class="try" onClick="toggleTry()" style="cursor: pointer;">
+        <!-- <div class="try" onClick="toggleTry()" style="cursor: pointer;"> -->
+            <div class="try toggle-content" style="cursor: pointer;">
             <h3>Saved Workouts:</h3>
 
             <!-- USER SAVED TO TRY CARDS -->
-            <div class="saved-try" style="display: none;">
+            <div class="saved-try display-content" style="display: none;">
                 <div class="card">
                     <div class="card-title">Card 1 Title</div>
                     <div class="card-content">
@@ -52,9 +53,9 @@
         </div>
 
         <div class="workouts">
-            <div id="cardio" onClick="toggleCardio()" style="cursor: pointer;">
+            <div class="toggle-content" id="cardio" style="cursor: pointer;">
                 <h2>Cardio</h2>
-                <div id="cardio-results"></div>
+                <div id="cardio-results display-content"></div>
                 <form action="">
                     <select name="search-format" id="search-format">
                       <option value="">--Please choose a difficulty level--</option>
@@ -64,17 +65,17 @@
                     </select>
                     <button type='submit' id="submit-button">Click Me</button>
                   </form>
-                <div id="cardio-results" style="display: none;"></div>
+                <div class=" display-content" id="cardio-results" style="display: none;"></div>
             </div>
 
-            <div id="strength" onClick="toggleStrength()" style="cursor: pointer;">
+            <div class="toggle-content" id="strength" style="cursor: pointer;">
                 <h2>Strength</h2>
-                <div id="strength-results" style="display: none;"></div>
+                <div class=" display-content" id="strength-results" style="display: none;"></div>
             </div>
 
-            <div id="stretching" onClick="toggleStretching()" style="cursor: pointer;">
+            <div class="toggle-content" id="stretching" style="cursor: pointer;">
                 <h2>Stretching</h2>
-                <div id="stretching-results" style="display: none;"></div>
+                <div class=" display-content" id="stretching-results" style="display: none;"></div>
             </div>
         </div>
     </main>
@@ -83,7 +84,6 @@
         <h5>©Team 15 2023</h5>
     </footer>
 
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="script.js"></script>
 </body>
 
