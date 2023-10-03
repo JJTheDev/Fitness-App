@@ -27,19 +27,17 @@ function getApi(event) {
 
 
 // CLICK EVENT FOR TOGGLE CONTENT
-
 var toggleContent = document.querySelectorAll(".toggle-content");
+
 for (var i = 0; i < toggleContent.length; i++){
   toggleContent[i].addEventListener('click', function(){
-    var el = this.querySelector(".display-content");
-    console.log(el)
-    if (el.style.display === "none"){
-      el.style.display = "block";
+    var displayContent = this.querySelector(".display-content");
+    if (displayContent.style.display === "none"){
+      displayContent.style.display = "block";
     } else {
-      el.style.display = "none";
+      displayContent.style.display = "none";
     }
   })
-
 }
 
 

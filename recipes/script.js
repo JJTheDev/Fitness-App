@@ -51,15 +51,21 @@ function saveRecipe(uri) {
   // You can use the recipe URI as a unique identifier for the recipe
 }
 
-// Toggle display of favorites section
-function toggleFavorites() {
-  $('.saved-favorites').toggle();
+
+// CLICK EVENT FOR TOGGLE CONTENT
+var toggleContent = document.querySelectorAll(".toggle-content");
+
+for (var i = 0; i < toggleContent.length; i++){
+  toggleContent[i].addEventListener('click', function(){
+    var displayContent = this.querySelector(".display-content");
+    if (displayContent.style.display === "none"){
+      displayContent.style.display = "block";
+    } else {
+      displayContent.style.display = "none";
+    }
+  })
 }
 
-// Toggle display of try section
-function toggleTry() {
-  $('.saved-try').toggle();
-}
 
 // Event listener for search button click
 $('#submit-button').click(function() {
