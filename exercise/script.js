@@ -1,14 +1,28 @@
-var submitButton1 = document.getElementById('submit-button1');
-var submitButton2 = document.getElementById('submit-button2');
-var submitButton3 = document.getElementById('submit-button3');
-let searchformat1 = document.getElementById('search-format1').value;
-var searchformat2 = document.getElementById('search-format2');
-var searchformat3 = document.getElementById('search-format3');
-//console.log(submitButton1)
+let submitButton1 = document.getElementById('submit-button1');
+let submitButton2 = document.getElementById('submit-button2');
+let submitButton3 = document.getElementById('submit-button3');
 
-function getApi1(event) {
+submitButton1.addEventListener('click', function (event) {
   event.preventDefault();
-  var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=cardio&difficulty=' + searchformat1;
+  let searchformat1 = document.getElementById('search-format1').value.trim();
+  getApi1(searchformat1);
+});
+
+submitButton2.addEventListener('click', function (event) {
+  event.preventDefault();
+  let searchformat2 = document.getElementById('search-format2').value.trim();
+  getApi2(searchformat2);
+});
+
+submitButton3.addEventListener('click', function (event) {
+  event.preventDefault();
+  let searchformat3 = document.getElementById('search-format3').value.trim();
+  getApi3(searchformat3);
+});
+
+function getApi1(searchformat1) {
+//  event.preventDefault();
+  var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=cardio&difficulty=' + searchformat1 + '&per_page=3';
 
   console.log(requestUrl);
   fetch(requestUrl, {
@@ -24,14 +38,9 @@ function getApi1(event) {
     }
     )};
 
-
-  submitButton1.addEventListener('click', getApi1);
-
-
-
-function getApi2(event) {
-  event.preventDefault();
-  var requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=biceps';
+function getApi2(searchformat2) {
+//  event.preventDefault();
+  var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=strength&difficulty=' + searchformat2;
 
 
   fetch(requestUrl, {
@@ -47,12 +56,9 @@ function getApi2(event) {
     }
     )};
 
-
-  submitButton2.addEventListener('click', getApi2);
-
-  function getApi3(event) {
-    event.preventDefault();
-    var requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=biceps';
+  function getApi3(searchformat3) {
+  //  event.preventDefault();
+    var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=stretching&difficulty=' + searchformat3;
   
   
     fetch(requestUrl, {
@@ -69,7 +75,7 @@ function getApi2(event) {
       )};
   
   
-    submitButton3.addEventListener('click', getApi3);
+
 
 
 
