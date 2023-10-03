@@ -1,14 +1,14 @@
-var submitButton = document.getElementById('submit-Button');
+var submitButton = document.getElementById('submit-button');
 
-function getApi() {
+function getApi(event) {
+  event.preventDefault();
   var requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=biceps';
 
   fetch(requestUrl, {
-    method: 'Get',
+    method: 'GET',
     headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
     }
   )
-  
     .then(function (response)  {
       return response.json();
     })
@@ -16,7 +16,13 @@ function getApi() {
       console.log(data);
     }
     )};
-  
+ // getApi()
+// function functiontest(event) {
+//   event.preventDefault();
+//   console.log('click');
+//   getApi();
+// }
+
   submitButton.addEventListener('click', getApi);
 
 
