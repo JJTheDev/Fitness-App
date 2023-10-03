@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Healthy Panda</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css"></link>
 </head>
 
 <body>
@@ -56,12 +57,12 @@
         </div>
 
         <div class="workouts">
-            <div id="cardio" style="cursor: pointer;">
-                <div class="toggle-content">
+            <div id="cardio">
+                <div class="toggle-content" style="cursor: pointer;">
                     <h2>Cardio</h2>
                 </div>
 
-                <div id="cardio-results" style="display: none;">
+                <div style="display: none;">
                     <form action="">
                         <select name="search-format" id="search-format">
                             <option value="">--Please choose a difficulty level--</option>
@@ -71,6 +72,10 @@
                         </select>
                         <button type='submit' id="submit-button">Click Me</button>
                     </form>
+
+                    <div id="cardio-results">
+
+                    </div>
                 </div>
             </div>
 

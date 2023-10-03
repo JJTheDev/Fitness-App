@@ -21,10 +21,10 @@ function getApi(event) {
         cardDiv.className = "workout-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
         var cardH3 = document.createElement('h3');
         cardH3.className = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
-        cardH3.innerHTML = `${workout.name}`;
+        cardH3.innerHTML = `Name: ${workout.name}`;
         var cardH5 = document.createElement('h5');
         cardH5.className = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
-        cardH5.innerHTML = `Equipment: ${workout.equipment}, Muscle: ${workout.muscle}`;
+        cardH5.innerHTML = `Equipment: ${workout.equipment} <br/> Muscle: ${workout.muscle}`;
         var cardInstructions = document.createElement('p');
         cardInstructions.className = "mb-3 font-normal text-gray-700 dark:text-gray-400";
         cardInstructions.innerHTML = `${workout.instructions}`;
