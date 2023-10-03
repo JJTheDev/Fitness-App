@@ -1,8 +1,38 @@
-var submitButton = document.getElementById('submit-button');
+var submitButton1 = document.getElementById('submit-button1');
+var submitButton2 = document.getElementById('submit-button2');
+var submitButton3 = document.getElementById('submit-button3');
+let searchformat1 = document.getElementById('search-format1').value;
+var searchformat2 = document.getElementById('search-format2');
+var searchformat3 = document.getElementById('search-format3');
+//console.log(submitButton1)
 
-function getApi(event) {
+function getApi1(event) {
+  event.preventDefault();
+  var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=cardio&difficulty=' + searchformat1;
+
+  console.log(requestUrl);
+  fetch(requestUrl, {
+    method: 'GET',
+    headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
+    }
+  )
+    .then(function (response)  {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    }
+    )};
+
+
+  submitButton1.addEventListener('click', getApi1);
+
+
+
+function getApi2(event) {
   event.preventDefault();
   var requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=biceps';
+
 
   fetch(requestUrl, {
     method: 'GET',
@@ -16,14 +46,30 @@ function getApi(event) {
       console.log(data);
     }
     )};
- // getApi()
-// function functiontest(event) {
-//   event.preventDefault();
-//   console.log('click');
-//   getApi();
-// }
 
-  submitButton.addEventListener('click', getApi);
+
+  submitButton2.addEventListener('click', getApi2);
+
+  function getApi3(event) {
+    event.preventDefault();
+    var requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=biceps';
+  
+  
+    fetch(requestUrl, {
+      method: 'GET',
+      headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
+      }
+    )
+      .then(function (response)  {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      }
+      )};
+  
+  
+    submitButton3.addEventListener('click', getApi3);
 
 
 
