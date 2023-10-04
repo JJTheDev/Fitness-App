@@ -1,0 +1,13 @@
+#cardio-results {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2%;
+    justify-content: center;
+}
+
+.workout-card {
+    margin: 1%;
+    width: 500px;
+    padding: 2%;
+    height: auto;
+}
