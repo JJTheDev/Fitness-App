@@ -82,6 +82,9 @@ form {
     padding: 1% 2%;
     background-color: white;
 }
+main {
+    min-height: 75vh;
+}
 
 @media only screen and (max-width: 850px) {
     #headbandpanda-2 {
