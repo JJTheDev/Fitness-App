@@ -1,3 +1,5 @@
+
+/* TEST CSS */
 #cardio-results {
     display: flex;
     flex-wrap: wrap;
@@ -11,3 +13,76 @@
     padding: 2%;
     height: auto;
 }
+
+h2, h3 {
+    font-size: 24px;
+}
+
+
+
+.goBack {
+    margin: 2% 2%;
+}
+
+.backBtn {
+    padding: 1% 2%;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.backBtn:hover, .toggle-content:hover {
+    background-color: aqua;
+}
+
+main {
+    padding: 2%;
+    justify-content: center;
+    margin: auto;
+}
+#main-h2 {
+    text-align: center;
+    font-size: 30px;
+    margin: 2%;
+}
+
+hr {
+    border: 2px solid black;
+    margin: 2%;
+}
+
+.toggle-content {
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 1%;
+    margin: 2% auto;
+}
+
+.display-content {
+    width: 75%;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2%;
+}
+
+.workoutpanda {
+    display: flex;
+    justify-content: space-between
+}
+
+@media only screen and (max-width: 850px) {
+    #headbandpanda-2 {
+      display: none;
+    }
+    h1 {
+        margin: 0 2%;
+    }
+
+    .workoutpanda {
+        display: flex;
+        justify-content: center;
+    }
+  }
+  
