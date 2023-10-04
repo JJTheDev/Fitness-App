@@ -61,7 +61,6 @@ var toggleContent = document.querySelectorAll(".toggle-content");
 for (var i = 0; i < toggleContent.length; i++){
   toggleContent[i].addEventListener('click', function(){
     var displayContent = this.nextElementSibling;
-    console.log(">>", displayContent)
     if (displayContent.style.display === "none"){
       displayContent.style.display = "block";
     } else {

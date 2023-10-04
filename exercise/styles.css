@@ -97,6 +97,19 @@ form {
     border: 2px solid black;
 }
 
+.items-saved {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+}
+
+.try, .completed-workouts {
+    width: 50%;
+    min-width: 600px;
+}
+
 
 @media only screen and (max-width: 850px) {
     #headbandpanda-2 {
