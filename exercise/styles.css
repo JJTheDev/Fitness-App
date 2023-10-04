@@ -3,23 +3,28 @@
 #cardio-results {
     display: flex;
     flex-wrap: wrap;
-    padding: 2%;
     justify-content: center;
+    padding: 2% 0;
 }
 
 .workout-card {
     margin: 1%;
-    width: 500px;
+    width: 45%;
+    min-width: 400px;
     padding: 2%;
-    height: auto;
 }
 
-h2, h3 {
+
+
+h2 {
     font-size: 24px;
 }
 
+h3 {
+    font-size: 18px;
+}
 
-
+/* BACK BUTTON */
 .goBack {
     margin: 2% 2%;
 }
@@ -31,7 +36,8 @@ h2, h3 {
     cursor: pointer;
 }
 
-.backBtn:hover, .toggle-content:hover, #submit-button:hover {
+/* HOVER STYLING */
+.backBtn:hover, .toggle-content:hover, #search-format:hover, #submit-button:hover {
     background-color: aqua;
 }
 
@@ -39,7 +45,10 @@ main {
     padding: 2%;
     justify-content: center;
     margin: auto;
+    min-height: 75vh;
 }
+
+
 #main-h2 {
     text-align: center;
     font-size: 30px;
@@ -51,6 +60,7 @@ hr {
     margin: 2%;
 }
 
+/* TOGGLE STYING */
 .toggle-content {
     width: 80%;
     border: 2px solid black;
@@ -65,8 +75,9 @@ hr {
     margin-bottom: 2%;
     border: 2px solid black;
     border-radius: 15px;
-    padding: 2%;
+    padding: 2% 1%;
 }
+
 
 .workoutpanda {
     display: flex;
@@ -79,12 +90,13 @@ form {
 
 #search-format, #submit-button {
     border-radius: 5px;
-    padding: 1% 2%;
-    background-color: white;
+    height: 55px;
+    padding: 0 2%;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid black;
 }
-main {
-    min-height: 75vh;
-}
+
 
 @media only screen and (max-width: 850px) {
     #headbandpanda-2 {
