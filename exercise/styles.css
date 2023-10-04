@@ -101,8 +101,11 @@ form {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
+    margin: 2% auto;
     justify-content: center;
+    padding: 0;
+    justify-content: space-between;
+    min-height: 100px;
 }
 
 .try, .completed-workouts {
