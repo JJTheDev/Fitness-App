@@ -31,7 +31,7 @@ h2, h3 {
     cursor: pointer;
 }
 
-.backBtn:hover, .toggle-content:hover {
+.backBtn:hover, .toggle-content:hover, #submit-button:hover {
     background-color: aqua;
 }
 
@@ -62,6 +62,7 @@ hr {
 .display-content {
     width: 75%;
     margin: auto;
+    margin-bottom: 2%;
     border: 2px solid black;
     border-radius: 15px;
     padding: 2%;
@@ -70,6 +71,16 @@ hr {
 .workoutpanda {
     display: flex;
     justify-content: space-between
+}
+
+form {
+    text-align: center;
+}
+
+#search-format, #submit-button {
+    border-radius: 5px;
+    padding: 1% 2%;
+    background-color: white;
 }
 
 @media only screen and (max-width: 850px) {
