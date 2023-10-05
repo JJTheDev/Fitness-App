@@ -4,97 +4,140 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css"></link>
     <title>Healthy Panda</title>
     
-
 </head>
 
 <body  class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col"> </body>   
 <header class=" h-20 bg-gradient-to-r from-sky-400 to-indigo-800 text-5xl text-center  text-green-300 font-serif" style="height: 100px; padding: 1%">
                 
-    <h1>Healthy Panda
-        
-    </h1>
+    <h1>Healthy Panda</h1>
     
 </header>
 <img src="./images/headbandpanda.PNG" class="flex float-right w-30">
     <main>
         <a href="../index.html"><button class="bg-blue-700">Back</button></a>
 
+<body class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col">
+    <header class=" h-20 bg-gradient-to-r from-sky-400 to-indigo-800 text-5xl text-center  text-green-300 font-serif"
+        style="height: 100px; padding: 1%">
 
-        <h2>What do you want to work out today?</h2>
+        <div class="workoutpanda">
+            <img src="../headbandpanda.PNG" alt="headbandpanda" class="w-40" style="transform: scalex(-1); height: 80px; width: auto;">
+             <h1>Healthy Panda</h1>
 
-        <!-- RECIPE FAVORITES SAVED -->
-        <div class="completed-workouts" onClick="toggleCompleted()" style="cursor: pointer;">
-            <h3>Completed Workouts:</h3>
+            <img id="headbandpanda-2" src="../headbandpanda.PNG" alt="headbandpanda-2" class="w-40" style="height: 80px; width: auto;">
+        </div>
+    
+    </header>
+    <div class="goBack">
+        <a href="../index.html" class="backBtn"><button> &larr; Back</button></a>
+    </div>
 
+    <main>
+        <h2 id="main-h2">What do you want to work out today?</h2>
+
+        <!-- FAVORITES SAVED -->
+        <div class="items-saved">
+        <div class="completed-workouts">
+            <div class="toggle-content" style="cursor: pointer;">
+                <h2>Completed/Favorite Workouts &#x2938;</h2>
+            </div>
+        
             <!-- USER SAVED FAVORITES CARDS -->
-            <div class="saved-completed" style="display: none;">
-                <div class="card">
-                    <div class="card-title">Card 1 Title</div>
-                    <div class="card-content">
-                        This is some content for Card 1. It can contain text, images, or other HTML elements.
-                    </div>
+            <div class="saved-completed display-content" style="display: none;">
+                <!-- Demo code -->
+                <div class="workout-card bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: Incline Hammer Curls
+                    </h3>
+                    <h5 class="mb-2 tracking-tight text-gray-900 dark:text-white">Equipment: dumbbell <br> Muscle: biceps</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Seat yourself on an incline bench with....</p>
+                    <button class="removeBtn nline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">delete</button>
+                </div>
+                <div class="workout-card bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: Incline Hammer Curls
+                    </h3>
+                    <h5 class="mb-2 tracking-tight text-gray-900 dark:text-white">Equipment: dumbbell <br> Muscle: biceps</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Seat yourself on an incline bench with....</p>
+                    <button class="removeBtn nline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">delete</button>
                 </div>
             </div>
         </div>
 
         <!-- workouts SAVED TO TRY -->
-        <div class="try" onClick="toggleTry()" style="cursor: pointer;">
-            <h3>Saved Workouts:</h3>
+        <div class="try">
+            <div class="toggle-content" style="cursor: pointer;">
+                <h2>Workouts to Try &#x2938;</h2>
+            </div>
 
-            <!-- USER SAVED TO TRY CARDS -->
-            <div class="saved-try" style="display: none;">
-                <div class="card">
-                    <div class="card-title">Card 1 Title</div>
-                    <div class="card-content">
-                        This is some content for Card 1. It can contain text, images, or other HTML elements.
-                    </div>
-                    <button>Save</button>
+            <!-- DEMO CARD -->
+            <div class="saved-try display-content" style="display: none;">
+                <!-- Demo code -->
+                <div class="workout-card bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: Incline Hammer Curls
+                    </h3>
+                    <h5 class="mb-2 tracking-tight text-gray-900 dark:text-white">Equipment: dumbbell <br> Muscle: biceps</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Seat yourself on an incline bench with....</p>
+                    <button class="favoriteBtn nline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">&#9829;</button>
+                    <button class="removeBtn nline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">delete</button>
                 </div>
             </div>
         </div>
+    </div>
+
+        <hr></hr>
+
+        <h2 id="main-h2">Find the Best Workouts for You!</h2>
 
         <div class="workouts">
-            <div id="cardio" onClick="toggleCardio()" style="cursor: pointer;">
-
-
-                
-                
-                    <h2>Cardio</h2>
+          
+            <div id="cardio">
+                <div class="toggle-content" style="cursor: pointer;">
+                    <h2>Cardio &#x2938;</h2>
                 </div>
-                <div id="cardio-results"></div>
-                <form action="">
-                    <select name="search-format" id="search-format">
-                      <option value="">--Please choose a difficulty level--</option>
-                      <option value="beginner">beginner</option>
-                      <option value="intermediate">intermediate</option>
-                      <option value="expert">expert</option>
-                    </select>
-                    <button type='submit' id="submit-button">Click Me</button>
-                  </form>
-                <div id="cardio-results" style="display: none;"></div>
+
+                <div class="display-content" style="display: none;">
+                    <form action="">
+                        <select name="search-format" id="search-format">
+                            <option value="">--Please choose a difficulty level--</option>
+                            <option value="beginner">beginner</option>
+                            <option value="intermediate">intermediate</option>
+                            <option value="expert">expert</option>
+                        </select>
+                        <button type='submit' id="submit-button">Click Me</button>
+                    </form>
+
+                    <div id="cardio-results">
+
+                    </div>
+                </div>
             </div>
 
-            <div id="strength" onClick="toggleStrength()" style="cursor: pointer;">
-                <h2>Strength</h2>
-                <div id="strength-results" style="display: none;"></div>
+            <div id="strength">
+                <div class="toggle-content" style="cursor: pointer;">
+                    <h2>Strength &#x2938;</h2>
+                </div>
+                <div class="display-content" id="strength-results" style="display: none;"></div>
             </div>
 
-            <div id="stretching" onClick="toggleStretching()" style="cursor: pointer;">
-                <h2>Stretching</h2>
-                <div id="stretching-results" style="display: none;"></div>
+            <div id="stretching">
+                <div class="toggle-content" style="cursor: pointer;">
+                    <h2>Stretching &#x2938;</h2>
+                </div>
+                <div class="display-content" id="stretching-results" style="display: none;"></div>
             </div>
         </div>
+
     </main>
 
-    <footer>
-        <h5>©Team 15 2023</h5>
+    <footer class="flex flex-col  text-center  py-10">
+        <h5>©Team Panda &#9829; </h5>
     </footer>
 
-    
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>

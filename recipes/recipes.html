@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Healthy Panda</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="styles.css">
   </head>
 
   <body  class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col"> </body> 
@@ -18,8 +19,10 @@
       <h2>Search for key words or foods</h2>
 
       <!-- RECIPE FAVORITES SAVED -->
-      <div class="favorites" onClick="toggleFavorites()" style="cursor: pointer;">
+      <div class="favorites" style="cursor: pointer;">
+        <div class="toggle-content">
         <h3>Favorites</h3>
+        </div>
         
         <!-- USER SAVED FAVORITES CARDS -->
         <div class="saved-favorites" style="display: none;">
@@ -34,8 +37,10 @@
       </div>
 
       <!-- RECIPES SAVED TO TRY -->
-      <div class="try" onClick="toggleTry()" style="cursor: pointer;">
+      <div class="try" style="cursor: pointer;">
+        <div class="toggle-content">
         <h3>Meals to Try:</h3>
+        </div>
 
         <!-- USER SAVED TO TRY CARDS -->
         <div class="saved-try" style="display: none;">
@@ -61,23 +66,6 @@
 
         <!-- USER SEARCH RESULTS (cards for each recipe will populate div) -->
         <div class="search-results">
-
-            <div class="card">
-                <div class="card-title">Card 1 Title</div>
-                <div class="card-content">
-                    This is some content for Card 1. It can contain text, images, or other HTML elements.
-                </div>
-                <button>Save</button>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card">
-                <div class="card-title">Card 2 Title</div>
-                <div class="card-content">
-                    More content for Card 2. Cards can be styled and customized to fit your design.
-                </div>
-                <button>Save</button>
-
         </div>
       </div>
 
@@ -87,7 +75,6 @@
       <h5>©Team 15 2023</h5>
     </footer>
 
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Include Axios -->

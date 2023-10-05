@@ -1,0 +1,140 @@
+
+/* TEST CSS */
+#cardio-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2% 0;
+}
+
+.workout-card {
+    margin: 1%;
+    width: 45%;
+    min-width: 400px;
+    padding: 2%;
+}
+
+
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+/* BACK BUTTON */
+.goBack {
+    margin: 2% 2%;
+}
+
+.backBtn {
+    padding: 1% 2%;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* HOVER STYLING */
+.backBtn:hover, .toggle-content:hover, #search-format:hover, #submit-button:hover {
+    background-color: aqua;
+}
+
+main {
+    padding: 2%;
+    justify-content: center;
+    margin: auto;
+    min-height: 75vh;
+}
+
+
+#main-h2 {
+    text-align: center;
+    font-size: 30px;
+    margin: 2%;
+}
+
+hr {
+    border: 2px solid black;
+    margin: 2%;
+}
+
+/* TOGGLE STYING */
+.toggle-content {
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 1%;
+    margin: 2% auto;
+}
+
+.display-content {
+    width: 75%;
+    margin: auto;
+    margin-bottom: 2%;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2% 1%;
+}
+
+
+.workoutpanda {
+    display: flex;
+    justify-content: space-between
+}
+
+form {
+    text-align: center;
+}
+
+#search-format, #submit-button {
+    border-radius: 5px;
+    height: 55px;
+    padding: 0 2%;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.items-saved {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2% auto;
+    justify-content: center;
+    padding: 0;
+    justify-content: space-between;
+    min-height: 100px;
+}
+
+.try, .completed-workouts {
+    width: 50%;
+    min-width: 600px;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    #headbandpanda-2 {
+      display: none;
+    }
+    h1 {
+        margin: 0 2%;
+    }
+
+    .workoutpanda {
+        display: flex;
+        justify-content: center;
+    }
+
+    .items-saved {
+        display: block;
+        width: 100%;
+    }
+
+    .try, .completed-workouts {
+        width: 100%;
+        min-width: none;
+    }
+  }
+  
