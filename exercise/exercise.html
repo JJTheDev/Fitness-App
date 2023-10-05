@@ -81,29 +81,40 @@
         <h2 id="main-h2">Find the Best Workouts for You!</h2>
 
         <div class="workouts">
-            <div id="cardio" onClick="toggleCardio()" style="cursor: pointer;">
-                <h2>Cardio</h2>
-                <div id="cardio-results"></div>
-                <form action="">
-                    <select name="search-format" id="search-format">
-                      <option value="">--Please choose a difficulty level--</option>
-                      <option value="beginner">beginner</option>
-                      <option value="intermediate">intermediate</option>
-                      <option value="expert">expert</option>
-                    </select>
-                    <button type='submit' id="submit-button">Click Me</button>
-                  </form>
-                <div id="cardio-results" style="display: none;"></div>
+            <div id="cardio">
+                <div class="toggle-content" style="cursor: pointer;">
+                    <h2>Cardio &#x2938;</h2>
+                </div>
+
+                <div class="display-content" style="display: none;">
+                    <form action="">
+                        <select name="search-format" id="search-format">
+                            <option value="">--Please choose a difficulty level--</option>
+                            <option value="beginner">beginner</option>
+                            <option value="intermediate">intermediate</option>
+                            <option value="expert">expert</option>
+                        </select>
+                        <button type='submit' id="submit-button">Click Me</button>
+                    </form>
+
+                    <div id="cardio-results">
+
+                    </div>
+                </div>
             </div>
 
-            <div id="strength" onClick="toggleStrength()" style="cursor: pointer;">
-                <h2>Strength</h2>
-                <div id="strength-results" style="display: none;"></div>
+            <div id="strength">
+                <div class="toggle-content" style="cursor: pointer;">
+                    <h2>Strength &#x2938;</h2>
+                </div>
+                <div class="display-content" id="strength-results" style="display: none;"></div>
             </div>
 
-            <div id="stretching" onClick="toggleStretching()" style="cursor: pointer;">
-                <h2>Stretching</h2>
-                <div id="stretching-results" style="display: none;"></div>
+            <div id="stretching">
+                <div class="toggle-content" style="cursor: pointer;">
+                    <h2>Stretching &#x2938;</h2>
+                </div>
+                <div class="display-content" id="stretching-results" style="display: none;"></div>
             </div>
         </div>
 
@@ -112,8 +123,10 @@
     <footer class="flex flex-col  text-center  py-10">
         <h5>©Team Panda &#9829; </h5>
     </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
