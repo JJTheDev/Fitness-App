@@ -31,8 +31,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 - Maggie McCausland
 - Matthew Thurber
 
-### CSS Framework used:
+### Tools Used:
 - Tailwind CSS
+- Axios
 
 
 ## License
