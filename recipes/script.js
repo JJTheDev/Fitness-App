@@ -11,20 +11,33 @@ function searchRecipes(query) {
   axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${applicationId}&app_key=${apiKey}`)
     .then(response => {
       const recipes = response.data.hits;
-
       // Display each recipe in a card
       recipes.forEach(recipe => {
-        const card = $(`<div class="card">
-          <div class="card-title">${recipe.recipe.label}</div>
-          <div class="card-content">
-            <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
-            <p>${recipe.recipe.summary}</p>
-          </div>
-          <button onClick="saveRecipe('${recipe.recipe.uri}')">Save</button>
-        </div>`);
+
+        const card = $(
+          ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <img class="rounded-t-lg" style="width: 100%" src="${recipe.recipe.image}" alt="${recipe.recipe.label}" />
+              <div class="p-5">
+
+              <div style="height: 150px">
+                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${recipe.recipe.label}</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${recipe.recipe.cuisineType}, ${recipe.recipe.dietLabels}</p>
+                </div>
+
+                <div>
+                <a href="${recipe.recipe.url}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.uri}')">
+                See How To Cook</button></a>
+                <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.uri}')">
+                  Save</button>
+                </div>
+
+              </div>
+            </div>`
+            );            
 
         $('.search-results').append(card);
       });
+      
     })
     .catch(error => {
       console.error('Error fetching recipes:', error);
@@ -37,15 +50,21 @@ function saveRecipe(uri) {
   // You can use the recipe URI as a unique identifier for the recipe
 }
 
-// Toggle display of favorites section
-function toggleFavorites() {
-  $('.saved-favorites').toggle();
+
+// CLICK EVENT FOR TOGGLE CONTENT
+var toggleContent = document.querySelectorAll(".toggle-content");
+
+for (var i = 0; i < toggleContent.length; i++){
+  toggleContent[i].addEventListener('click', function(){
+    var displayContent = this.nextElementSibling;
+    if (displayContent.style.display === "none"){
+      displayContent.style.display = "block";
+    } else {
+      displayContent.style.display = "none";
+    }
+  })
 }
 
-// Toggle display of try section
-function toggleTry() {
-  $('.saved-try').toggle();
-}
 
 // Event listener for search button click
 $('#submit-button').click(function() {
