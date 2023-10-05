@@ -46,10 +46,19 @@ function searchRecipes(query) {
 
 
 var tryArr = [];
+
 // Function to save a recipe
 function saveRecipe(image, label, cuisineType, dietLabels, url) {
   // TODO: Implement this function to save the recipe to the user's favorites or to try
   // You can use the recipe URI as a unique identifier for the recipe
+
+  var storedTries = JSON.parse(localStorage.getItem("try"));
+
+  if (storedTries !== null) {
+    tryArr = storedTries;
+  };
+
+  localStorage.setItem("try", JSON.stringify(tryArr));
 
   var recipeObj = {
     "image": image,
@@ -58,25 +67,17 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
     "dietLabels": dietLabels,
     "recipeUrl": url,
   }
-
-  if (!localStorage.getItem('try')) {
-    tryArr.push(recipeObj);
-    localStorage.setItem("try", JSON.stringify(tryArr));
-  } else {
-    tryArr.push(recipeObj);
-    localStorage.setItem("try", JSON.stringify(tryArr));
-  }
-
-  console.log("localStorage", localStorage)
+  tryArr.push(recipeObj);
+  localStorage.setItem("try", JSON.stringify(tryArr));
 
   displaySavedTry();
 }
 
 function displaySavedTry() {
   var savedTries = JSON.parse(localStorage.getItem('try'));
-  // var displaySavedTries = document.querySelector(".saved-try");
+  var displaySavedTries = document.querySelector(".saved-try");
 
-  // displaySavedTries.innerHTML = " ";
+  displaySavedTries.innerHTML = " ";
 
 
   if (savedTries < 1) {
@@ -84,7 +85,7 @@ function displaySavedTry() {
 
   } else {
     for (var i = 0; i < savedTries.length; i++) {
-      
+
       const card = $(
         ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" style="width: 100%" src="${savedTries[i].image}" alt="${savedTries[i].label}" />
@@ -104,7 +105,7 @@ function displaySavedTry() {
             </div>`
       );
 
-       $('.saved-try').append(card);
+      $('.saved-try').append(card);
 
     }
   }
