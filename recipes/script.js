@@ -48,6 +48,27 @@ function searchRecipes(query) {
 function saveRecipe(uri) {
   // TODO: Implement this function to save the recipe to the user's favorites or to try
   // You can use the recipe URI as a unique identifier for the recipe
+  // var saveCard = document.querySelector('')
+
+  var allCards = document.querySelectorAll(".recipe-card");
+
+  for (var i = 0; i < allCards.length; i++) {
+  var savedTryArray = [];
+
+    allCards[i].addEventListener('click', function () {
+      savedTryArray.push(this);
+      console.log(this)
+
+    })
+  }
+  // console.log(savedTryArray)
+
+
+      // if (!localStorage.getItem('try')) {
+    //   savedTryArray.push();
+    //   localStorage.setItem('try', JSON.stringify(savedTryArray))
+    // }
+
 }
 
 
