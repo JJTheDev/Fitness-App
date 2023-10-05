@@ -74,12 +74,17 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
 
 function displaySavedTry() {
   var savedTries = JSON.parse(localStorage.getItem('try'));
+  // var displaySavedTries = document.querySelector(".saved-try");
+
+  // displaySavedTries.innerHTML = " ";
+
 
   if (savedTries < 1) {
     console.log("empty")
 
   } else {
     for (var i = 0; i < savedTries.length; i++) {
+      
       const card = $(
         ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" style="width: 100%" src="${savedTries[i].image}" alt="${savedTries[i].label}" />
@@ -99,10 +104,11 @@ function displaySavedTry() {
             </div>`
       );
 
-      $('.saved-try').append(card);
+       $('.saved-try').append(card);
+
     }
   }
-}
+};
 
 
 
