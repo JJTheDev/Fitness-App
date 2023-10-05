@@ -27,14 +27,12 @@ function searchRecipes(query) {
                 <div>
                 <a href="${recipe.recipe.url}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 See How To Cook</button></a>
-                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Save</button>
+                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.image}', '${recipe.recipe.label}', '${recipe.recipe.cuisineType}', '${recipe.recipe.dietLabels}', '${recipe.recipe.url}')">Save</button>
                 </div>
-
               </div>
             </div>`
             );  
-            // <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.uri}')">
+            // 
 
 
         $('.search-results').append(card);
@@ -42,22 +40,23 @@ function searchRecipes(query) {
 
 
       // ATTEMPT SAVE CARD TO TRY
-      $(".save-card").on("click", function(event){
-        event.preventDefault();
-        var tryArr = [];
-        var recipeCard = $(this).parent().parent().parent();
-        tryArr.push(recipeCard)
-        console.log("card", recipeCard)
-        console.log("arr", tryArr)
+      // $(".save-card").on("click", function(event){
+      //   event.preventDefault();
+      //   var tryArr = [];
+      //   var recipeCard = $(this).parent().parent().parent();
+      //   tryArr.push(recipeCard)
+      //   console.log("card", recipeCard)
+      //   console.log("arr", tryArr)
+ 
 
-        localStorage.setItem("try", tryArr);
-        var storedTries = localStorage.getItem("try");
-        console.log("stored", storedTries)
+      //   localStorage.setItem("try", recipeCard.innerHTML);
+      //   var storedTries = localStorage.getItem("try");
+      // //   console.log("stored", storedTries)
 
-        var savedSection = document.querySelector('.saved-try');
+      //   var savedSection = document.querySelector('.saved-try');
 
-      savedSection.innerHTML = storedTries;
-      })
+      // savedSection.innerHTML = storedTries;
+      // })
 
       
     })
@@ -66,14 +65,28 @@ function searchRecipes(query) {
     });
 }
 
+var tryArr = []
+
+
 // Function to save a recipe
-// function saveRecipe(card) {
-//   // TODO: Implement this function to save the recipe to the user's favorites or to try
-//   // You can use the recipe URI as a unique identifier for the recipe
-//   // var saveCard = document.querySelector('')
-//   var savedTryArray = [];
-//   console.log(">>>", card)
-// }
+function saveRecipe(image, label, cuisineType, dietLabels, url) {
+  // TODO: Implement this function to save the recipe to the user's favorites or to try
+  // You can use the recipe URI as a unique identifier for the recipe
+
+  var recipeObj = {
+    "image": image,
+    "label": label,
+    "type": cuisineType,
+    "dietLabels": dietLabels,
+    "recipeUrl": url,
+  }
+  tryArr.push(recipeObj)
+
+
+  console.log("recipeObj", recipeObj)
+  console.log("tryArr", tryArr)
+
+}
 
 
 
