@@ -1,21 +1,3 @@
-
-/* TEST CSS */
-#cardio-results {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 2% 0;
-}
-
-.workout-card {
-    margin: 1%;
-    width: 45%;
-    min-width: 400px;
-    padding: 2%;
-}
-
-
-
 h2 {
     font-size: 24px;
 }
@@ -70,12 +52,17 @@ hr {
 }
 
 .display-content {
-    width: 75%;
+    width: 85%;
     margin: auto;
     margin-bottom: 2%;
     border: 2px solid black;
     border-radius: 15px;
     padding: 2% 1%;
+    min-height: 150px;
+}
+
+#cardio .display-content, #strength .display-content, #stretching .display-content {
+    width: 75%;
 }
 
 
@@ -109,9 +96,31 @@ form {
 }
 
 .try, .completed-workouts {
-    width: 45%;
-    min-width: 600px;
+    width: 40%;
+    min-width: 500px;
+    padding: 0;
+    margin: 0;
 }
+
+
+#cardio-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2% 0;
+}
+
+.workout-card {
+    margin: 1%;
+    width: 45%;
+    min-width: 400px;
+    padding: 2%;
+}
+
+.completed-workouts .toggle-content, .try .toggle-content {
+    width: 100%;
+}
+
 
 
 @media only screen and (max-width: 1000px) {
@@ -133,8 +142,14 @@ form {
     }
 
     .try, .completed-workouts {
-        width: 100%;
-        min-width: none;
+        width: 80%;
+        min-width: 0;
+        margin: auto;
+    }
+
+    .workout-card {
+        width: auto;
+        min-width: 0;
     }
   }
   

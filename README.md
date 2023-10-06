@@ -6,6 +6,7 @@ We created this project to help people search for workout options and/or healthy
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+- [Checklist](#checklist)
 - [Credits](#credits)
 - [License](#license)
 
@@ -23,6 +24,18 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
     ![alt text](assets/images/screenshot.png)
     ```
 
+## Checklist
+- [x] Use a CSS framework other than Bootstrap.
+- [] Be deployed to GitHub Pages.
+- [x] Be interactive (i.e: accept and respond to user input).
+- [x] Use at least two server-side APIs.
+- [] Does not use alerts, confirms, or prompts (use modals).
+- [x] Use client-side storage to store persistent data.
+- [] Be responsive.
+- [] Have a polished UI.
+- [] Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id-naming conventions, indentation, quality comments, etc.).
+- [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+
 ## Credits
 
 ### Collaborators for this project were:
@@ -34,6 +47,8 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 ### Tools Used:
 - Tailwind CSS
 - Axios
+- Ninja Exercise API
+- Edamam API
 
 
 ## License
