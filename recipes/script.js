@@ -79,8 +79,10 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
   console.log("Item already Added:", itemExists)
   }
 
+  displayModal();
   displaySavedTry();
 }
+
 
 // DISPLAY STORED TRIES TO THE HTML
 function displaySavedTry() {
@@ -101,7 +103,7 @@ function displaySavedTry() {
             <img class="rounded-t-lg" style="width: 100%" src="${savedTries[i].image}" alt="${savedTries[i].label}" />
               <div class="p-5">
             
-                  <div style="height: 150px">
+                  <div style="height: auto; padding:2% 0;" >
                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${savedTries[i].label}</h5>
                       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${savedTries[i].type},${savedTries[i].dietLabels}</p>
                       <a href="${savedTries[i].recipeUrl}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">See How To Cook</button></a>
@@ -153,6 +155,7 @@ function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
   console.log("Item already Added:", itemExists)
   }
 
+  displayModal();
   displaySavedFavorites();
 }
 
@@ -174,7 +177,7 @@ function displaySavedFavorites() {
             <img class="rounded-t-lg" style="width: 100%" src="${savedFavorites[i].image}" alt="${savedFavorites[i].label}" />
               <div class="p-5">
             
-                  <div style="height: 150px">
+              <div style="height: auto; padding:2% 0;" >
                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${savedFavorites[i].label}</h5>
                       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${savedFavorites[i].type},${savedFavorites[i].dietLabels}</p>
                       <a href="${savedFavorites[i].recipeUrl}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">See How To Cook</button></a>
@@ -206,6 +209,17 @@ for (var i = 0; i < toggleContent.length; i++) {
       displayContent.style.display = "none";
     }
   })
+}
+
+// DISPLAY MODAL WHEN ITEMS ARE SAVED AS FAVORITES OR TO TRY
+function displayModal(){
+  var modal = document.querySelector(".saveModal");
+  modal.style.display = "block";
+
+  var closeModal = document.querySelector(".closeModal");
+  closeModal.onclick = function(){
+    modal.style.display = "none";
+  }
 }
 
 
