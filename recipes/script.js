@@ -27,63 +27,165 @@ function searchRecipes(query) {
                 <div>
                 <a href="${recipe.recipe.url}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 See How To Cook</button></a>
-                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Save</button>
+                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.image}', '${recipe.recipe.label}', '${recipe.recipe.cuisineType}', '${recipe.recipe.dietLabels}', '${recipe.recipe.url}')">Save</button>
                 </div>
-
               </div>
             </div>`
-            );  
-            // <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.uri}')">
+        );
+        // 
 
 
         $('.search-results').append(card);
       });
 
-
-      // ATTEMPT SAVE CARD TO TRY
-      $(".save-card").on("click", function(event){
-        event.preventDefault();
-        var tryArr = [];
-        var recipeCard = $(this).parent().parent().parent();
-        tryArr.push(recipeCard)
-        console.log("card", recipeCard)
-        console.log("arr", tryArr)
-
-        localStorage.setItem("try", tryArr);
-        var storedTries = localStorage.getItem("try");
-        console.log("stored", storedTries)
-
-        var savedSection = document.querySelector('.saved-try');
-
-      savedSection.innerHTML = storedTries;
-      })
-
-      
     })
     .catch(error => {
       console.error('Error fetching recipes:', error);
     });
 }
 
-// Function to save a recipe
-// function saveRecipe(card) {
-//   // TODO: Implement this function to save the recipe to the user's favorites or to try
-//   // You can use the recipe URI as a unique identifier for the recipe
-//   // var saveCard = document.querySelector('')
-//   var savedTryArray = [];
-//   console.log(">>>", card)
-// }
 
+var tryArr = [];
+var favoriteArr = [];
+
+// Function to save a recipe
+function saveRecipe(image, label, cuisineType, dietLabels, url) {
+  // TODO: Implement this function to save the recipe to the user's favorites or to try
+  // You can use the recipe URI as a unique identifier for the recipe
+
+  var storedTries = JSON.parse(localStorage.getItem("try"));
+
+  if (storedTries !== null) {
+    tryArr = storedTries;
+  };
+
+  localStorage.setItem("try", JSON.stringify(tryArr));
+
+  var recipeObj = {
+    "image": image,
+    "label": label,
+    "type": cuisineType,
+    "dietLabels": dietLabels,
+    "recipeUrl": url,
+  }
+  tryArr.push(recipeObj);
+  localStorage.setItem("try", JSON.stringify(tryArr));
+
+  displaySavedTry();
+}
+
+function displaySavedTry() {
+  var savedTries = JSON.parse(localStorage.getItem('try'));
+  var displaySavedTries = document.querySelector(".saved-try");
+
+  displaySavedTries.innerHTML = " ";
+
+
+  if (savedTries < 1) {
+    console.log("empty")
+
+  } else {
+    for (var i = 0; i < savedTries.length; i++) {
+
+      const card = $(
+        ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <img class="rounded-t-lg" style="width: 100%" src="${savedTries[i].image}" alt="${savedTries[i].label}" />
+              <div class="p-5">
+            
+                  <div style="height: 150px">
+                       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${savedTries[i].label}</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${savedTries[i].type},${savedTries[i].dietLabels}</p>
+                      <a href="${savedTries[i].recipeUrl}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">See How To Cook</button></a>
+                  </div>
+            
+                  <div>
+                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}')">&#9829;</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove</button>
+                  </div>
+                </div>
+            </div>`
+      );
+
+      $('.saved-try').append(card);
+
+    }
+  }
+};
+
+
+// Function to save Favorite recipe
+function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
+  // TODO: Implement this function to save the recipe to the user's favorites or to try
+  // You can use the recipe URI as a unique identifier for the recipe
+
+  var storedFavorites = JSON.parse(localStorage.getItem("favorite"));
+
+  if (storedFavorites !== null) {
+    favoriteArr = storedFavorites;
+  };
+
+  localStorage.setItem("favorite", JSON.stringify(favoriteArr));
+
+  var recipeObj = {
+    "image": image,
+    "label": label,
+    "type": cuisineType,
+    "dietLabels": dietLabels,
+    "recipeUrl": url,
+  }
+  favoriteArr.push(recipeObj);
+  localStorage.setItem("favorite", JSON.stringify(favoriteArr));
+
+  displaySavedFavorites();
+}
+
+function displaySavedFavorites() {
+  var savedFavorites = JSON.parse(localStorage.getItem('favorite'));
+  var displaySavedFavorites = document.querySelector(".saved-favorites");
+
+  displaySavedFavorites.innerHTML = " ";
+
+
+  if (savedFavorites < 1) {
+    console.log("empty")
+
+  } else {
+    console.log(">>", savedFavorites)
+    for (var i = 0; i < savedFavorites.length; i++) {
+      console.log(savedFavorites[i].image)
+
+      const card = $(
+        ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <img class="rounded-t-lg" style="width: 100%" src="${savedFavorites[i].image}" alt="${savedFavorites[i].label}" />
+              <div class="p-5">
+            
+                  <div style="height: 150px">
+                       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${savedFavorites[i].label}</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${savedFavorites[i].type},${savedFavorites[i].dietLabels}</p>
+                      <a href="${savedFavorites[i].recipeUrl}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">See How To Cook</button></a>
+                  </div>
+            
+                  <div>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove</button>
+                  </div>
+                </div>
+            </div>`
+      );
+
+      $('.saved-favorites').append(card);
+
+    }
+  }
+};
 
 
 // CLICK EVENT FOR TOGGLE CONTENT
 var toggleContent = document.querySelectorAll(".toggle-content");
 
-for (var i = 0; i < toggleContent.length; i++){
-  toggleContent[i].addEventListener('click', function(){
+for (var i = 0; i < toggleContent.length; i++) {
+  toggleContent[i].addEventListener('click', function () {
     var displayContent = this.nextElementSibling;
-    if (displayContent.style.display === "none"){
+    if (displayContent.style.display === "none") {
       displayContent.style.display = "block";
     } else {
       displayContent.style.display = "none";
@@ -93,7 +195,11 @@ for (var i = 0; i < toggleContent.length; i++){
 
 
 // Event listener for search button click
-$('#submit-button').click(function() {
+$('#submit-button').click(function () {
   const searchInput = $('.search-bar input').val();
   searchRecipes(searchInput);
 });
+
+
+displaySavedTry();
+displaySavedFavorites();
