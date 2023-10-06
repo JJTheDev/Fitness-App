@@ -48,7 +48,7 @@ function searchRecipes(query) {
 var tryArr = [];
 var favoriteArr = [];
 
-// Function to save a recipe
+// STORE RECIPES TO LOCAL STOREAGE FOR TRIES
 function saveRecipe(image, label, cuisineType, dietLabels, url) {
   // TODO: Implement this function to save the recipe to the user's favorites or to try
   // You can use the recipe URI as a unique identifier for the recipe
@@ -57,7 +57,7 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
 
   if (storedTries !== null) {
     tryArr = storedTries;
-  };
+  }
 
   localStorage.setItem("try", JSON.stringify(tryArr));
 
@@ -68,12 +68,21 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
     "dietLabels": dietLabels,
     "recipeUrl": url,
   }
-  tryArr.push(recipeObj);
-  localStorage.setItem("try", JSON.stringify(tryArr));
+
+  // AVOID DUPLICATES: find matching values to avoid adding twice
+  var itemExists = tryArr.find(item => item.recipeUrl === recipeObj.recipeUrl);
+
+  if(!itemExists){
+    tryArr.push(recipeObj);
+    localStorage.setItem("try", JSON.stringify(tryArr));
+  } else if (itemExists){
+  console.log("Item already Added:", itemExists)
+  }
 
   displaySavedTry();
 }
 
+// DISPLAY STORED TRIES TO THE HTML
 function displaySavedTry() {
   var savedTries = JSON.parse(localStorage.getItem('try'));
   var displaySavedTries = document.querySelector(".saved-try");
@@ -100,7 +109,7 @@ function displaySavedTry() {
             
                   <div>
                        <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}')">&#9829;</button>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="removeRecipe()">Remove</button>
                   </div>
                 </div>
             </div>`
@@ -113,7 +122,7 @@ function displaySavedTry() {
 };
 
 
-// Function to save Favorite recipe
+// SAVE FAVORITES TO LOCAL STORAGE
 function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
   // TODO: Implement this function to save the recipe to the user's favorites or to try
   // You can use the recipe URI as a unique identifier for the recipe
@@ -133,12 +142,21 @@ function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
     "dietLabels": dietLabels,
     "recipeUrl": url,
   }
-  favoriteArr.push(recipeObj);
-  localStorage.setItem("favorite", JSON.stringify(favoriteArr));
+
+  // AVOID DUPLICATES: find existing object, if it exists don't add
+  var itemExists = favoriteArr.find(item => item.recipeUrl === recipeObj.recipeUrl);
+
+  if(!itemExists){
+    favoriteArr.push(recipeObj);
+    localStorage.setItem("favorite", JSON.stringify(favoriteArr));
+  } else if (itemExists){
+  console.log("Item already Added:", itemExists)
+  }
 
   displaySavedFavorites();
 }
 
+// DISPLAY STORED FAVORITES TO HTML
 function displaySavedFavorites() {
   var savedFavorites = JSON.parse(localStorage.getItem('favorite'));
   var displaySavedFavorites = document.querySelector(".saved-favorites");
@@ -150,10 +168,7 @@ function displaySavedFavorites() {
     console.log("empty")
 
   } else {
-    console.log(">>", savedFavorites)
     for (var i = 0; i < savedFavorites.length; i++) {
-      console.log(savedFavorites[i].image)
-
       const card = $(
         ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" style="width: 100%" src="${savedFavorites[i].image}" alt="${savedFavorites[i].label}" />
