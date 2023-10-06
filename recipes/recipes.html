@@ -8,26 +8,28 @@
         <link rel="stylesheet" href="styles.css">
   </head>
 
+  
+
   <body  class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col"> </body> 
-    <header class="h-20 bg-gradient-to-r from-sky-400 to-indigo-800 text-5xl text-center  text-green-300 font-serif"
+    <header class="h-20 bg-gradient-to-r from-sky-400 to-indigo-800 text-5xl text-center  text-stone-950 font-serif"
     style="height: 100px; padding: 1%">
      
-    <div class="workoutpanda">
-      <img src="./images/headbandpanda.PNG" alt="headbandpanda" class="w-40" style="transform: scalex(-1); height: 80px; width: auto;">
-       <h1>Healthy Panda</h1>
-
-       <img id="headbandpanda-2" src="./images/headbandpanda.PNG" alt="headbandpanda-2" class="w-40" style="height: 80px; width: auto;">
-
+    <div >
       
+       <h1 class="justify-center  shadow-xl  " >Healthy Panda</h1>
+   
   </div>
+
+  <img  class=" float-right  opacity-60 "   id="headbandpanda-2" src="./images/eatingpanda.PNG" alt="headbandpanda-2" class="w-40" style="height: 300px; width: auto;">
+
 
     </header>
 
-    <div class="goBack">
-      <a href="../index.html" class="backBtn"><button> &larr; Back</button></a>
+    <div    class="goBack">
+      <a href="../index.html" class="backBtn"><button>&larr; Back</button></a>
     </div>
 
-    <main>
+    <main  class= "content-center" >
      
 
 
@@ -35,17 +37,12 @@
       
 
       <!-- RECIPE FAVORITES SAVED -->
-      <div class="favorites" style="cursor: pointer;">
-        <div class="toggle-content"    > 
+      <div class=" shadow-l  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover: duration-300 " class="favorites" style="cursor: pointer; ">
+        <div class="toggle-content"  > 
         <h3>Favorites</h3>
         </div>
 
         
-
-
-
-
-
 
 
 
@@ -62,7 +59,7 @@
       </div>
 
       <!-- RECIPES SAVED TO TRY -->
-      <div class="try" style="cursor: pointer;">
+      <div class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover: duration-300" class="try" style="cursor: pointer;">
         <div class="toggle-content">
         <h3>Meals to Try:</h3>
         </div>
@@ -71,7 +68,8 @@
       <div class=" flex justify-center text-3xl  py-20  ">
         <h2>Search for key words or foods</h2>
         </div>
-
+        
+      
 
 
 
@@ -90,13 +88,16 @@
       </div>
 
       <!-- SEARCH SECTION -->
-      <div class="search-recipes">
+      <div class =" justify-center" class="search-recipes">
         <!-- USER SEARCH INPUT -->
         <div class="search-bar">
           <h2>SEARCH</h2>
+          <input type="text" placeholder="Search...">
+        </div>
+
           <button type='submit' id="submit-button">Click Me</button>
 
-          <input type="text" placeholder="Search...">
+          
         </div>
 
         <!-- USER SEARCH RESULTS (cards for each recipe will populate div) -->
