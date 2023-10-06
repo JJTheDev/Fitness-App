@@ -5,24 +5,15 @@ We created this project to help people search for workout options and/or healthy
 
 ## Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
 - [Checklist](#checklist)
 - [Credits](#credits)
+- [Screenshot](#screenshot)
 - [License](#license)
 
 ## Installation
 What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
 
 No installation needed.
-
-## Usage
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
 
 ## Checklist
 - [x] Use a CSS framework other than Bootstrap.
@@ -50,6 +41,11 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 - Ninja Exercise API
 - Edamam API
 
+## Screenshot
+![](/images/project-screenshot.png)
+
+## Deployed Project Link
+[Click to view our deployed GitHub Page]()
 
 ## License
 The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
