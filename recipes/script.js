@@ -27,7 +27,7 @@ function searchRecipes(query) {
                 <div>
                 <a href="${recipe.recipe.url}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 See How To Cook</button></a>
-                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.image}', '${recipe.recipe.label}', '${recipe.recipe.cuisineType}', '${recipe.recipe.dietLabels}', '${recipe.recipe.url}')">Save</button>
+                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.image}', '${recipe.recipe.label}', '${recipe.recipe.cuisineType}', '${recipe.recipe.dietLabels}', '${recipe.recipe.url}'), displaySavedModal()">Save</button>
                 </div>
               </div>
             </div>`
@@ -79,7 +79,6 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
   console.log("Item already Added:", itemExists)
   }
 
-  displaySaveModal();
   displaySavedTry();
 }
 
@@ -110,8 +109,8 @@ function displaySavedTry() {
                   </div>
             
                   <div>
-                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}')">&#9829;</button>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="removeRecipe()">Remove</button>
+                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}'), displayFavoriteModal()">&#9829;</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeRecipe()">Remove</button>
                   </div>
                 </div>
             </div>`
@@ -155,7 +154,6 @@ function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
   console.log("Item already Added:", itemExists)
   }
 
-  displaySaveModal();
   displaySavedFavorites();
 }
 
@@ -184,7 +182,7 @@ function displaySavedFavorites() {
                   </div>
             
                   <div>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal()">Remove</button>
                   </div>
                 </div>
             </div>`
@@ -211,32 +209,26 @@ for (var i = 0; i < toggleContent.length; i++) {
   })
 }
 
-// DISPLAY MODAL WHEN ITEMS ARE SAVED AS FAVORITES OR TO TRY
-function displaySaveModal(){
-  var modal = document.querySelector(".recipe-modal");
-  var modalMessage = document.querySelector("#modalH2");
-  modalMessage.innerHTML = "The recipe has been saved!";
-  modal.style.display = "block";
-
-  var closeModal = document.querySelector(".closeModal");
-  closeModal.onclick = function(){
-    modal.style.display = "none";
-  }
+// DISPLAY MODAL WHEN ITEMS ARE SAVED TO TRIES
+function displaySavedModal(){
+    $( "#dialog" ).dialog( "open" );
+    $( "#dialog" ).dialog({ title: "Recipe Added" });
+    $("#dialog-text").text("The recipe has been saved!");
 };
 
-// DISPLAY MODAL WHEN ITEMS ARE REMOVED FROM FAVORITES/TRIES -- needs to be called
-function displayRemoveModal(){
-    var modal = document.querySelector(".recipe-modal");
-    var modalMessage = document.querySelector("#modalH2");
-    modalMessage.innerHTML = "The recipe has been removed.";
-    modal.style.display = "block";
-  
-    var closeModal = document.querySelector(".closeModal");
-    closeModal.onclick = function(){
-      modal.style.display = "none";
-    }
-  };
+// DISPLAY MODAL WHEN ITEMS ARE SAVED TO FAVROITES
+function displayFavoriteModal(){
+  $( "#dialog" ).dialog( "open" );
+  $( "#dialog" ).dialog({ title: "Recipe Favorited" });
+  $("#dialog-text").text("The recipe has been saved to favorites!");
+}
 
+// DISPLAY MODAL WHEN ITEMS ARE REMOVED FROM FAVORITES/TRIES
+function displayRemovedModal(){
+  $( "#dialog" ).dialog( "open" );
+  $( "#dialog" ).dialog({ title: "Recipe Removed" });
+  $("#dialog-text").text("The recipe has been removed.");
+};
 
 // Event listener for search button click
 $('#submit-button').click(function () {
