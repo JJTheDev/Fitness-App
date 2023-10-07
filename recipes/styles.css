@@ -12,7 +12,7 @@
 
 
 /* MODAL CSS */
-.saveModal {
+.recipe-modal {
     display: none;
     position: fixed;
     z-index: 1;

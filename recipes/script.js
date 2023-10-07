@@ -79,7 +79,7 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
   console.log("Item already Added:", itemExists)
   }
 
-  displayModal();
+  displaySaveModal();
   displaySavedTry();
 }
 
@@ -155,7 +155,7 @@ function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
   console.log("Item already Added:", itemExists)
   }
 
-  displayModal();
+  displaySaveModal();
   displaySavedFavorites();
 }
 
@@ -212,15 +212,30 @@ for (var i = 0; i < toggleContent.length; i++) {
 }
 
 // DISPLAY MODAL WHEN ITEMS ARE SAVED AS FAVORITES OR TO TRY
-function displayModal(){
-  var modal = document.querySelector(".saveModal");
+function displaySaveModal(){
+  var modal = document.querySelector(".recipe-modal");
+  var modalMessage = document.querySelector("#modalH2");
+  modalMessage.innerHTML = "The recipe has been saved!";
   modal.style.display = "block";
 
   var closeModal = document.querySelector(".closeModal");
   closeModal.onclick = function(){
     modal.style.display = "none";
   }
-}
+};
+
+// DISPLAY MODAL WHEN ITEMS ARE REMOVED FROM FAVORITES/TRIES -- needs to be called
+function displayRemoveModal(){
+    var modal = document.querySelector(".recipe-modal");
+    var modalMessage = document.querySelector("#modalH2");
+    modalMessage.innerHTML = "The recipe has been removed.";
+    modal.style.display = "block";
+  
+    var closeModal = document.querySelector(".closeModal");
+    closeModal.onclick = function(){
+      modal.style.display = "none";
+    }
+  };
 
 
 // Event listener for search button click
