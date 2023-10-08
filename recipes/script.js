@@ -109,8 +109,8 @@ function displaySavedTry() {
                   </div>
             
                   <div>
-                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}'), displayFavoriteModal(), removeRecipe()">&#9829;</button>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeRecipe()">Remove</button>
+                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}'), displayFavoriteModal(), removeRecipe('${savedTries[i].recipeUrl}')">&#9829;</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeRecipe('${savedTries[i].recipeUrl}')">Remove</button>
                   </div>
                 </div>
             </div>`
@@ -182,7 +182,7 @@ function displaySavedFavorites() {
                   </div>
             
                   <div>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeFavoriteRecipe()">Remove</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeFavoriteRecipe('${savedFavorites[i].recipeUrl}')">Remove</button>
                   </div>
                 </div>
             </div>`
@@ -194,11 +194,11 @@ function displaySavedFavorites() {
   }
 };
 
-function removeRecipe(index) {
+function removeRecipe(recipeUrl) {
   var savedTries = JSON.parse(localStorage.getItem('try'));
-
   // Remove the recipe at the specified index
-  savedTries.splice(index, 1);
+  savedTries.splice(savedTries.findIndex(recipe => recipe.recipeUrl === recipeUrl), 1);
+
 
   // Update local storage
   localStorage.setItem("try", JSON.stringify(savedTries));
@@ -207,11 +207,11 @@ function removeRecipe(index) {
   displaySavedTry();
 }
 
-function removeFavoriteRecipe(index) {
+function removeFavoriteRecipe(recipeUrl) {
   var savedFavorites = JSON.parse(localStorage.getItem('favorite'));
 
-  // Remove the recipe at the specified index
-  savedFavorites.splice(index, 1);
+  // Find matching object property
+  savedFavorites.splice(savedFavorites.findIndex(recipe => recipe.recipeUrl === recipeUrl), 1);
 
   // Update local storage
   localStorage.setItem("favorite", JSON.stringify(savedFavorites));

@@ -38,6 +38,7 @@ No installation needed.
 ### Tools Used:
 - Tailwind CSS
 - Axios
+- jQuery
 - Ninja Exercise API
 - Edamam API
 
