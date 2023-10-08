@@ -1,10 +1,11 @@
 .search-results {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2%;
 }
 
 .recipe-card {
-    margin: 1%;
-    width: 400px;
+  margin: 1%;
+  width: 400px;
+  height: 100%;
 }
