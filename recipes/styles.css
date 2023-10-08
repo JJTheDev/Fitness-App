@@ -1,7 +1,7 @@
 .search-results {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2%;
 }
 
 .recipe-card {

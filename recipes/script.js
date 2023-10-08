@@ -194,6 +194,19 @@ function displaySavedFavorites() {
   }
 };
 
+function removeRecipe(index) {
+  var savedTries = JSON.parse(localStorage.getItem('try'));
+
+  // Remove the recipe at the specified index
+  savedTries.splice(index, 1);
+
+  // Update local storage
+  localStorage.setItem("try", JSON.stringify(savedTries));
+
+  // Redisplay saved tries
+  displaySavedTry();
+}
+
 
 // CLICK EVENT FOR TOGGLE CONTENT
 var toggleContent = document.querySelectorAll(".toggle-content");

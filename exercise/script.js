@@ -1,169 +1,148 @@
-var submitButton = document.getElementById('submit-button');
-var cardioResults = document.querySelector('#cardio-results')
+document.addEventListener('DOMContentLoaded', function() {
+    // Variables
+    const apiUrl = 'https://api.api-ninjas.com/v1/bucketlist';
+    const apiKey = '0FgMf1TTFfyRhv+gsDu5qA==0A2dfLlQ2Xkp8hYF';
 
-function getApi(event) {
-  event.preventDefault();
-  var requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=biceps';
+    // Elements
+    const favoritesToggle = document.querySelector('.completed-workouts .toggle-content');
+    const savedCompleted = document.querySelector('.completed-workouts .saved-completed');
+    const tryToggle = document.querySelector('.try .toggle-content');
+    const savedTry = document.querySelector('.try .saved-try');
+    const cardioToggle = document.querySelector('#cardio .toggle-content');
+    const cardioForm = document.querySelector('#cardio form');
+    const cardioResults = document.querySelector('#cardio-results');
+    const strengthToggle = document.querySelector('#strength .toggle-content');
+    const strengthResults = document.querySelector('#strength-results');
+    const stretchingToggle = document.querySelector('#stretching .toggle-content');
+    const stretchingResults = document.querySelector('#stretching-results');
 
-  fetch(requestUrl, {
-    method: 'GET',
-    headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
-    }
-  )
-    .then(function (response)  {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      data.forEach(workout => {
+    // Event Listeners
+    favoritesToggle.addEventListener('click', function() {
+        savedCompleted.style.display = savedCompleted.style.display === 'none' ? 'block' : 'none';
+    });
 
-        var cardDiv = document.createElement("div");
-        cardDiv.className = "workout-card bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
-        var cardH3 = document.createElement('h3');
-        cardH3.className = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
-        cardH3.innerHTML = `Name: ${workout.name}`;
-        var cardH5 = document.createElement('h5');
-        cardH5.className = "mb-2 tracking-tight text-gray-900 dark:text-white";
-        cardH5.innerHTML = `Equipment: ${workout.equipment} <br/> Muscle: ${workout.muscle}`;
-        var cardInstructions = document.createElement('p');
-        cardInstructions.className = "mb-3 font-normal text-gray-700 dark:text-gray-400";
-        cardInstructions.innerHTML = `${workout.instructions}`;
-        var saveBtn = document.createElement('button');
-        saveBtn.className = "nline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
-        saveBtn.innerHTML = "Save";
-      
-      
-        console.log(cardioResults)
-        cardioResults.appendChild(cardDiv);
-        cardDiv.appendChild(cardH3);
-        cardDiv.appendChild(cardH5);
-        cardDiv.appendChild(cardInstructions);
-        cardDiv.appendChild(saveBtn);
-      })
-      
-    }
-    )};
+    tryToggle.addEventListener('click', function() {
+        savedTry.style.display = savedTry.style.display === 'none' ? 'block' : 'none';
+    });
 
- // getApi()
-// function functiontest(event) {
-//   event.preventDefault();
-//   console.log('click');
-//   getApi();
+    cardioToggle.addEventListener('click', function() {
+        cardioForm.style.display = cardioForm.style.display === 'none' ? 'block' : 'none';
+    });
+
+    cardioForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const difficulty = document.getElementById('search-format').value;
+        fetchAndDisplayExercises('cardio', difficulty);
+    });
+
+    strengthToggle.addEventListener('click', function() {
+        strengthResults.style.display = strengthResults.style.display === 'none' ? 'block' : 'none';
+        fetchAndDisplayExercises('strength');
+    });
+
+    stretchingToggle.addEventListener('click', function() {
+        stretchingResults.style.display = stretchingResults.style.display === 'none' ? 'block' : 'none';
+        fetchAndDisplayExercises('stretching');
+    });
+
+    // Function to Fetch and Display Exercises
+    const fetchAndDisplayExercises = async (muscle, difficulty) => {
+        try {
+            const response = await axios.get(apiUrl, {
+                headers: { 'X-Api-Key': apiKey },
+                params: { muscle, difficulty },
+            });
+            // Handle the response and update the DOM accordingly
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching exercises:', error.message);
+        }
+    };
+});
+
+  
+
+// // script.js
+
+// // Function to fetch and display exercises for a specific muscle
+// async function fetchAndDisplayExercises(muscle) {
+//     try {
+//         const response = await axios.get(`https://api.api-ninjas.com/v1/exercises`);
+//         const exercises = response.data;
+
+//         const resultsContainer = document.getElementById(`${muscle}-results`);
+//         resultsContainer.innerHTML = ''; // Clear previous results
+
+//         exercises.forEach((exercise) => {
+//             const exerciseCard = createExerciseCard(exercise);
+//             resultsContainer.appendChild(exerciseCard);
+//         });
+
+//         resultsContainer.style.display = 'block'; // Show results container
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//     }
 // }
 
+// // Function to create an exercise card
+// function createExerciseCard(exercise) {
+//     const exerciseCard = document.createElement('div');
+//     exerciseCard.classList.add('workout-card', 'bg-white', 'border', 'border-gray-200', 'rounded-lg', 'shadow', 'dark:bg-gray-800', 'dark:border-gray-700');
 
-  submitButton.addEventListener('click', getApi);
+//     const title = document.createElement('h3');
+//     title.classList.add('mb-2', 'text-2xl', 'font-bold', 'tracking-tight', 'text-gray-900', 'dark:text-white');
+//     title.textContent = `Name: ${exercise.name}`;
 
+//     const details = document.createElement('h5');
+//     details.classList.add('mb-2', 'tracking-tight', 'text-gray-900', 'dark:text-white');
+//     details.innerHTML = `Equipment: ${exercise.equipment} <br> Muscle: ${exercise.muscle}`;
 
-// CLICK EVENT FOR TOGGLE CONTENT
-var toggleContent = document.querySelectorAll(".toggle-content");
+//     const description = document.createElement('p');
+//     description.classList.add('mb-3', 'font-normal', 'text-gray-700', 'dark:text-gray-400');
+//     description.textContent = exercise.description;
 
-for (var i = 0; i < toggleContent.length; i++){
-  toggleContent[i].addEventListener('click', function(){
-    var displayContent = this.nextElementSibling;
-    if (displayContent.style.display === "none"){
-      displayContent.style.display = "block";
-    } else {
-      displayContent.style.display = "none";
-    }
-  })
-}
+//     const favoriteButton = document.createElement('button');
+//     favoriteButton.classList.add('favoriteBtn', 'inline-flex', 'items-center', 'px-3', 'py-2', 'text-sm', 'font-medium', 'text-center', 'text-white', 'bg-blue-700', 'rounded-lg', 'hover:bg-blue-800', 'focus:ring-4', 'focus:outline-none', 'focus:ring-blue-300', 'dark:bg-blue-600', 'dark:hover:bg-blue-700', 'dark:focus:ring-blue-800');
+//     favoriteButton.innerHTML = '&#9829;';
 
+//     const removeButton = document.createElement('button');
+//     removeButton.classList.add('removeBtn', 'inline-flex', 'items-center', 'px-3', 'py-2', 'text-sm', 'font-medium', 'text-center', 'text-white', 'bg-blue-700', 'rounded-lg', 'hover:bg-blue-800', 'focus:ring-4', 'focus:outline-none', 'focus:ring-blue-300', 'dark:bg-blue-600', 'dark:hover:bg-blue-700', 'dark:focus:ring-blue-800');
+//     removeButton.textContent = 'delete';
 
-
-// STARTER CODE option 2 FOR WORKOUT CARD option 1? (both the same, JQUERY VS JAVASCRIPT)
-  // data.forEach(workout => {
-
-  //   const card = $(
-  //     ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-  //         <div class="p-5">
-  //            <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${workout.name}</h3>
-  //            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Equipment: ${workout.equipment} Muscle: ${workout.muscle}</h5>
-  //           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${workout.instructions}</p>
-  //           <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveWorkout('')">
-  //             Save</button>
-  //             </div>
-  //       </div>`
-  //       );
-  // });
-
-
-
-
-// let submitButton = document.getElementById('submit-button');
-// submitButton.addEventListener('click', getInput);
-
-// function getInput(event) {
-//   event.preventDefault();
-//   console.log('click');
-//   let searchType = "cardio"; // You can set a default value here if needed
-//   let searchDifficulty = document.getElementById('search-format').value.trim();
-//   console.log(searchType);
-//   console.log(searchDifficulty);
-//   fetchExerciseSearchResults(searchType, searchDifficulty);
-// }
-
-// function fetchExerciseSearchResults(searchType, searchDifficulty) {
-//   let ExerciseURL = "https://www.api-ninjas.com/v1/exercises?difficulty=" + searchDifficulty;
-//   // + "&type=" + searchType + "&fo=json"
-//   console.log(ExerciseURL);
-//   fetch(ExerciseURL, {
-//     headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ' }
-//   })
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       renderSearchResults(data);
+//     // Add event listener for the remove button
+//     removeButton.addEventListener('click', () => {
+//         exerciseCard.remove();
+//         // You can add logic here to remove the exercise from local storage if needed
 //     });
+
+//     // Append elements to exercise card
+//     exerciseCard.appendChild(title);
+//     exerciseCard.appendChild(details);
+//     exerciseCard.appendChild(description);
+//     exerciseCard.appendChild(favoriteButton);
+//     exerciseCard.appendChild(removeButton);
+
+//     return exerciseCard;
 // }
 
-//  //render the results
+// // Event listeners for different exercise categories
+// document.getElementById('cardio').addEventListener('click', () => {
+//     const difficulty = document.getElementById('search-format').value;
+//     fetchAndDisplayExercises('cardio', difficulty);
+// });
 
+// document.getElementById('strength').addEventListener('click', () => {
+//     fetchAndDisplayExercises('strength');
+// });
 
+// document.getElementById('stretching').addEventListener('click', () => {
+//     fetchAndDisplayExercises('stretching');
+// });
 
+// // Event listener for form submission
+// document.getElementById('submit-button').addEventListener('click', (event) => {
+//     event.preventDefault(); // Prevent the default form submission
+//     const difficulty = document.getElementById('search-format').value;
+//     fetchAndDisplayExercises('cardio', difficulty);
+// });
 
-
-
-
-
-
-
-
-
-// // function renderSearchResults(data) {
-// //   console.log(data);
-// //   let searchResults = document.getElementById('search-results');
-
-
-// //   for (let i = 0; i < data.results.length; i++) {
-// //     let titleContent = `Title: ${data.results[i].title}`;
-// //     let dateContent = `Date: ${data.results[i].date}`;
-// //     let subjectContent = `Subject(s): ${data.results[i].subject}`;
-// //     let readMoreUrl = data.results[i].url;
-
-// //         //create elements
-// //         let titleEl = document.createElement("p");
-// //         let dateEl = document.createElement("p");
-// //         let subjectEl = document.createElement("p");
-// //         let readMoreEl = document.createElement("a");
-// //         let lineBreakEl = document.createElement("p");
-    
-// //         //add content
-// //         titleEl.textContent = titleContent;
-// //         dateEl.textContent = dateContent;
-// //         subjectEl.textContent = subjectContent;
-// //         readMoreEl.textContent = "Read More";
-// //         readMoreEl.setAttribute('href', readMoreUrl);
-// //         readMoreEl.setAttribute('target', "_blank");
-// //         lineBreakEl.setAttribute('style', "border: 1px solid black");
-    
-// //         //append to element
-// //         searchResults.append(titleEl);
-// //         titleEl.appendChild(dateEl);
-// //         titleEl.appendChild(subjectEl);
-// //         titleEl.appendChild(readMoreEl);
-// //         titleEl.appendChild(lineBreakEl);
-// //   }
-
-// // }
