@@ -109,7 +109,7 @@ function displaySavedTry() {
                   </div>
             
                   <div>
-                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}'), displayFavoriteModal()">&#9829;</button>
+                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}'), displayFavoriteModal(), removeRecipe()">&#9829;</button>
                        <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeRecipe()">Remove</button>
                   </div>
                 </div>
@@ -182,7 +182,7 @@ function displaySavedFavorites() {
                   </div>
             
                   <div>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal()">Remove</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeFavoriteRecipe()">Remove</button>
                   </div>
                 </div>
             </div>`
@@ -205,6 +205,19 @@ function removeRecipe(index) {
 
   // Redisplay saved tries
   displaySavedTry();
+}
+
+function removeFavoriteRecipe(index) {
+  var savedFavorites = JSON.parse(localStorage.getItem('favorite'));
+
+  // Remove the recipe at the specified index
+  savedFavorites.splice(index, 1);
+
+  // Update local storage
+  localStorage.setItem("favorite", JSON.stringify(savedFavorites));
+
+  // Redisplay saved tries
+  displaySavedFavorites();
 }
 
 
