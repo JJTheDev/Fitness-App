@@ -27,7 +27,7 @@ function searchRecipes(query) {
                 <div>
                 <a href="${recipe.recipe.url}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 See How To Cook</button></a>
-                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.image}', '${recipe.recipe.label}', '${recipe.recipe.cuisineType}', '${recipe.recipe.dietLabels}', '${recipe.recipe.url}')">Save</button>
+                <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="saveRecipe('${recipe.recipe.image}', '${recipe.recipe.label}', '${recipe.recipe.cuisineType}', '${recipe.recipe.dietLabels}', '${recipe.recipe.url}'), displaySavedModal()">Save</button>
                 </div>
               </div>
             </div>`
@@ -48,7 +48,7 @@ function searchRecipes(query) {
 var tryArr = [];
 var favoriteArr = [];
 
-// Function to save a recipe
+// STORE RECIPES TO LOCAL STOREAGE FOR TRIES
 function saveRecipe(image, label, cuisineType, dietLabels, url) {
   // TODO: Implement this function to save the recipe to the user's favorites or to try
   // You can use the recipe URI as a unique identifier for the recipe
@@ -57,7 +57,7 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
 
   if (storedTries !== null) {
     tryArr = storedTries;
-  };
+  }
 
   localStorage.setItem("try", JSON.stringify(tryArr));
 
@@ -68,61 +68,62 @@ function saveRecipe(image, label, cuisineType, dietLabels, url) {
     "dietLabels": dietLabels,
     "recipeUrl": url,
   }
-  tryArr.push(recipeObj);
-  localStorage.setItem("try", JSON.stringify(tryArr));
+
+  // AVOID DUPLICATES: find matching values to avoid adding twice
+  var itemExists = tryArr.find(item => item.recipeUrl === recipeObj.recipeUrl);
+
+  if(!itemExists){
+    tryArr.push(recipeObj);
+    localStorage.setItem("try", JSON.stringify(tryArr));
+  } else if (itemExists){
+  console.log("Item already Added:", itemExists)
+  }
 
   displaySavedTry();
 }
 
+
+// DISPLAY STORED TRIES TO THE HTML
 function displaySavedTry() {
   var savedTries = JSON.parse(localStorage.getItem('try'));
   var displaySavedTries = document.querySelector(".saved-try");
 
   displaySavedTries.innerHTML = " ";
 
+
   if (savedTries < 1) {
-    console.log("empty");
+    console.log("empty")
+
   } else {
     for (var i = 0; i < savedTries.length; i++) {
+
       const card = $(
         ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" style="width: 100%" src="${savedTries[i].image}" alt="${savedTries[i].label}" />
               <div class="p-5">
-                  <div style="height: 150px">
+            
+                  <div style="height: auto; padding:2% 0;" >
                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${savedTries[i].label}</h5>
                       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${savedTries[i].type},${savedTries[i].dietLabels}</p>
                       <a href="${savedTries[i].recipeUrl}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">See How To Cook</button></a>
                   </div>
+            
                   <div>
-                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}')">&#9829;</button>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="removeRecipe(${i})">Remove</button>
+                       <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}'), displayFavoriteModal()">&#9829;</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal(), removeRecipe()">Remove</button>
                   </div>
                 </div>
             </div>`
       );
 
       $('.saved-try').append(card);
+
     }
   }
-}
-
-// Function to remove a saved recipe
-function removeRecipe(index) {
-  var savedTries = JSON.parse(localStorage.getItem('try'));
-
-  // Remove the recipe at the specified index
-  savedTries.splice(index, 1);
-
-  // Update local storage
-  localStorage.setItem("try", JSON.stringify(savedTries));
-
-  // Redisplay saved tries
-  displaySavedTry();
-}
+};
 
 
-
-// Function to save Favorite recipe
+// SAVE FAVORITES TO LOCAL STORAGE
 function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
   // TODO: Implement this function to save the recipe to the user's favorites or to try
   // You can use the recipe URI as a unique identifier for the recipe
@@ -142,12 +143,21 @@ function favoriteRecipe(image, label, cuisineType, dietLabels, url) {
     "dietLabels": dietLabels,
     "recipeUrl": url,
   }
-  favoriteArr.push(recipeObj);
-  localStorage.setItem("favorite", JSON.stringify(favoriteArr));
+
+  // AVOID DUPLICATES: find existing object, if it exists don't add
+  var itemExists = favoriteArr.find(item => item.recipeUrl === recipeObj.recipeUrl);
+
+  if(!itemExists){
+    favoriteArr.push(recipeObj);
+    localStorage.setItem("favorite", JSON.stringify(favoriteArr));
+  } else if (itemExists){
+  console.log("Item already Added:", itemExists)
+  }
 
   displaySavedFavorites();
 }
 
+// DISPLAY STORED FAVORITES TO HTML
 function displaySavedFavorites() {
   var savedFavorites = JSON.parse(localStorage.getItem('favorite'));
   var displaySavedFavorites = document.querySelector(".saved-favorites");
@@ -159,23 +169,20 @@ function displaySavedFavorites() {
     console.log("empty")
 
   } else {
-    console.log(">>", savedFavorites)
     for (var i = 0; i < savedFavorites.length; i++) {
-      console.log(savedFavorites[i].image)
-
       const card = $(
         ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" style="width: 100%" src="${savedFavorites[i].image}" alt="${savedFavorites[i].label}" />
               <div class="p-5">
             
-                  <div style="height: 150px">
+              <div style="height: auto; padding:2% 0;" >
                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${savedFavorites[i].label}</h5>
                       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${savedFavorites[i].type},${savedFavorites[i].dietLabels}</p>
                       <a href="${savedFavorites[i].recipeUrl}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">See How To Cook</button></a>
                   </div>
             
                   <div>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="displayRemovedModal()">Remove</button>
                   </div>
                 </div>
             </div>`
@@ -186,6 +193,19 @@ function displaySavedFavorites() {
     }
   }
 };
+
+function removeRecipe(index) {
+  var savedTries = JSON.parse(localStorage.getItem('try'));
+
+  // Remove the recipe at the specified index
+  savedTries.splice(index, 1);
+
+  // Update local storage
+  localStorage.setItem("try", JSON.stringify(savedTries));
+
+  // Redisplay saved tries
+  displaySavedTry();
+}
 
 
 // CLICK EVENT FOR TOGGLE CONTENT
@@ -202,6 +222,26 @@ for (var i = 0; i < toggleContent.length; i++) {
   })
 }
 
+// DISPLAY MODAL WHEN ITEMS ARE SAVED TO TRIES
+function displaySavedModal(){
+    $( "#dialog" ).dialog( "open" );
+    $( "#dialog" ).dialog({ title: "Recipe Added" });
+    $("#dialog-text").text("The recipe has been saved!");
+};
+
+// DISPLAY MODAL WHEN ITEMS ARE SAVED TO FAVROITES
+function displayFavoriteModal(){
+  $( "#dialog" ).dialog( "open" );
+  $( "#dialog" ).dialog({ title: "Recipe Favorited" });
+  $("#dialog-text").text("The recipe has been saved to favorites!");
+}
+
+// DISPLAY MODAL WHEN ITEMS ARE REMOVED FROM FAVORITES/TRIES
+function displayRemovedModal(){
+  $( "#dialog" ).dialog( "open" );
+  $( "#dialog" ).dialog({ title: "Recipe Removed" });
+  $("#dialog-text").text("The recipe has been removed.");
+};
 
 // Event listener for search button click
 $('#submit-button').click(function () {
