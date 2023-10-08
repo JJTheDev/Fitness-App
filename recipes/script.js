@@ -80,37 +80,46 @@ function displaySavedTry() {
 
   displaySavedTries.innerHTML = " ";
 
-
   if (savedTries < 1) {
-    console.log("empty")
-
+    console.log("empty");
   } else {
     for (var i = 0; i < savedTries.length; i++) {
-
       const card = $(
         ` <div class="recipe-card max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" style="width: 100%" src="${savedTries[i].image}" alt="${savedTries[i].label}" />
               <div class="p-5">
-            
                   <div style="height: 150px">
                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${savedTries[i].label}</h5>
                       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${savedTries[i].type},${savedTries[i].dietLabels}</p>
                       <a href="${savedTries[i].recipeUrl}" target="_blank"><button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">See How To Cook</button></a>
                   </div>
-            
                   <div>
                        <button class="save-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="favoriteRecipe('${savedTries[i].image}', '${savedTries[i].label}', '${savedTries[i].type}', '${savedTries[i].dietLabels}', '${savedTries[i].recipeUrl}')">&#9829;</button>
-                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove</button>
+                       <button class="remove-card inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="removeRecipe(${i})">Remove</button>
                   </div>
                 </div>
             </div>`
       );
 
       $('.saved-try').append(card);
-
     }
   }
-};
+}
+
+// Function to remove a saved recipe
+function removeRecipe(index) {
+  var savedTries = JSON.parse(localStorage.getItem('try'));
+
+  // Remove the recipe at the specified index
+  savedTries.splice(index, 1);
+
+  // Update local storage
+  localStorage.setItem("try", JSON.stringify(savedTries));
+
+  // Redisplay saved tries
+  displaySavedTry();
+}
+
 
 
 // Function to save Favorite recipe
