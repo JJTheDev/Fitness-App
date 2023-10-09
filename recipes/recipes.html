@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Healthy Panda</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="styles.css">
   </head>
 
@@ -19,38 +20,24 @@
       <h2>Search for key words or foods</h2>
 
       <!-- RECIPE FAVORITES SAVED -->
-      <div class="favorites" style="cursor: pointer;">
-        <div class="toggle-content">
+      <div class="favorites">
+        <div class="toggle-content" style="cursor: pointer;">
         <h3>Favorites</h3>
         </div>
         
         <!-- USER SAVED FAVORITES CARDS -->
         <div class="saved-favorites" style="display: none;">
-            <div class="card">
-                <div class="card-title">Card 1 Title</div>
-                <div class="card-content">
-                    This is some content for Card 1. It can contain text, images, or other HTML elements.
-                </div>
-                <button>Save</button>
-            </div>
         </div>
       </div>
 
       <!-- RECIPES SAVED TO TRY -->
-      <div class="try" style="cursor: pointer;">
-        <div class="toggle-content">
+      <div class="try">
+        <div class="toggle-content" style="cursor: pointer;">
         <h3>Meals to Try:</h3>
         </div>
 
         <!-- USER SAVED TO TRY CARDS -->
         <div class="saved-try" style="display: none;">
-            <div class="card">
-                <div class="card-title">Card 1 Title</div>
-                <div class="card-content">
-                    This is some content for Card 1. It can contain text, images, or other HTML elements.
-                </div>
-                <button>Save</button>
-            </div>
         </div>
       </div>
 
@@ -69,6 +56,11 @@
         </div>
       </div>
 
+
+      <div id="dialog" title="Basic dialog">
+        <p id="dialog-text"></p>
+      </div>
+
     </main>
 
     <footer>
@@ -77,8 +69,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <!-- Include Axios -->
-
+    <script>
+      $( function() {
+        $( "#dialog" ).dialog({
+          autoOpen: false,
+          resizable: false,
+          height: "auto",
+            width: 500,
+            modal: true,
+        });
+      } );
+      </script>
     <script src="script.js"></script>
   </body>
 </html>
