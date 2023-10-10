@@ -11,12 +11,12 @@ var bookmarkedWorkout = "";
 
 difficultyDropdown.addEventListener('change', function() {
   selectedDifficulty = difficultyDropdown.value;
-  console.log(selectedDifficulty);
+  // console.log(selectedDifficulty);
 });
 
 typeDropdown.addEventListener('change', function() {
   selectedType = typeDropdown.value;
-  console.log(selectedType);
+  // console.log(selectedType);
 });
 
 document.addEventListener('click', function (event) {
@@ -33,9 +33,9 @@ function clearResults() {
 }
 
 function getApi1(event) {
-  console.log(selectedDifficulty);
+  // console.log(selectedDifficulty);
   var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=' + selectedType + '&difficulty=' + selectedDifficulty;
-  console.log(requestUrl);
+  // console.log(requestUrl);
   fetch(requestUrl, {
     method: 'GET',
     headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
@@ -45,18 +45,21 @@ function getApi1(event) {
   })
   .then(function (data) {
     for (var i = 0; i < 3; i++) {
-      console.log(data[i].name);
-      console.log(data[i].equipment);
-      console.log(data[i].instructions);
-      console.log(data[i].difficulty);
+      // console.log(data[i].name);
+      // console.log(data[i].equipment);
+      // console.log(data[i].instructions);
+      // console.log(data[i].difficulty);
+      var workoutDiv = document.createElement('div');
+      workoutDiv.className = "saved-workout-card"
       var exerciseName = document.createElement('h2');
       var exerciseEquipment = document.createElement('h3');
       var exerciseInstructions = document.createElement('p');
       var saveExercise = document.createElement('button');
-      results.append(exerciseName);
-      results.append(exerciseEquipment);
-      results.append(exerciseInstructions);
-      results.append(saveExercise);
+      results.append(workoutDiv);
+      workoutDiv.append(exerciseName);
+      workoutDiv.append(exerciseEquipment);
+      workoutDiv.append(exerciseInstructions);
+      workoutDiv.append(saveExercise);
       exerciseName.textContent = data[i].name;
       exerciseEquipment.textContent = "Equipment needed: " + data[i].equipment;
       exerciseInstructions.textContent = data[i].instructions;
@@ -78,26 +81,48 @@ function getApi1(event) {
         saveExercise.style.backgroundColor = '#0056b3'; // Darker blue on hover
       });
 
+
       // Add click event to show the modal and save the exercise
-      saveExercise.addEventListener('click', (function (exerciseName) {
+      saveExercise.addEventListener('click', (function (exerciseName, exerciseEquipment, exerciseInstructions) {
         return function () {
-          savedWorkout.push(exerciseName); // Push exerciseName to the savedWorkout array
+          var storedWorkouts = JSON.parse(localStorage.getItem("savedWorkout"));
+
+          if (storedWorkouts !== null) {
+            savedWorkout = storedWorkouts;
+          }
+
           localStorage.setItem('savedWorkout', JSON.stringify(savedWorkout));
-          console.log(savedWorkout);
-          showModalWithMessage(exerciseName + " saved under 'workout to try'");
-          var listedWorkout = document.createElement('li');
+          showModalWithMessage(exerciseName + " has been saved to 'workouts to try'");
+
+          var workoutObj = {
+            "name": exerciseName,
+            "equipment": exerciseEquipment,
+            "instructions": exerciseInstructions,
+          }
+
+          var itemExists = savedWorkout.find(item => item.name === exerciseName);
+
+          if(!itemExists){
+            // Push exerciseName to the savedWorkout array
+            savedWorkout.push(workoutObj);
+            console.log(workoutObj)
+            localStorage.setItem("savedWorkout", JSON.stringify(savedWorkout));
+          } else if (itemExists){
+          console.log("Item already Added:", itemExists)
+          }
+
           var faveExercise = document.createElement('button');
-          Saved.append(listedWorkout);
+          displaysavedWorkout()
+
           Saved.append(faveExercise);
-          listedWorkout.textContent = exerciseName; // Use exerciseName here
           faveExercise.addEventListener('click', (function (listedWorkout) {
             return function () {
               bookmarkedWorkout = listedWorkout;
-              console.log(bookmarkedWorkout);
+              // console.log(bookmarkedWorkout);
             };
-          })(exerciseName)); // Pass the current value of 'exerciseName' to the closure
+          })(exerciseName, exerciseEquipment,exerciseInstructions)); // Pass the current value of 'exerciseName' to the closure
         };
-      })(data[i].name)); // Pass the current value of 'i' to the closure
+      })(data[i].name, data[i].equipment, data[i].instructions)); // Pass the current value of 'i' to the closure
       
 
     }
@@ -118,59 +143,47 @@ function showModalWithMessage(message) {
 
 function displaysavedWorkout() {
   var savedContainer = document.getElementById('Saved');
+  var workoutsSaved = JSON.parse(localStorage.getItem('savedWorkout'));
   savedContainer.innerHTML = ''; // Clear the existing content
 
-  for (var i = 0; i < savedWorkout.length; i++) {
-    var workout = savedWorkout[i];
-    var listedWorkout = document.createElement('li');
-    listedWorkout.textContent = workout;
-    savedContainer.appendChild(listedWorkout);
+  for (var i = 0; i < workoutsSaved.length; i++) {
+    var workoutDiv = document.createElement('div');
+    workoutDiv.className = "saved-workout-card"
+    var workoutTitle = document.createElement('h2');
+    workoutTitle.textContent = workoutsSaved[i].name;
+    var workoutEquipment = document.createElement('h3');
+    workoutEquipment.textContent = "Equipment needed: " + workoutsSaved[i].equipment;
+    var workoutInstructions = document.createElement('p');
+    workoutInstructions.textContent = workoutsSaved[i].instructions;
+
+    savedContainer.appendChild(workoutDiv);
+    workoutDiv.appendChild(workoutTitle);
+    workoutDiv.appendChild(workoutEquipment);
+    workoutDiv.appendChild(workoutInstructions);
   }
 
 }
 
 // Load saved workout from local storage on page load
-(function init() {
+function init() {
   var storedsavedWorkout = JSON.parse(localStorage.getItem('savedWorkout'));
   if (storedsavedWorkout !== null) {
     savedWorkout = storedsavedWorkout;
     displaysavedWorkout(); // Display saved workout
   }
-})();
+};
 
 init();
 
 
-// // Add click event to handle workout completion
+// CLICK EVENT FOR TOGGLE CONTENT
+var toggleContent = document.querySelector("#toTry")
 
-//     // Create an object to represent the exercise data
-//     var exerciseData = {
-//       name: data[index].name,
-//       equipment: data[index].equipment,
-//       instructions: data[index].instructions,
-//     };
-
-//     // Convert the exercise data to a JSON string and store it in local storage
-//     localStorage.setItem('savedExercise', JSON.stringify(exerciseData));
-
-//     var exerciseNameSaved = document.createElement('h2');
-//     var completedExercise = document.createElement('button');
-//     savedContainer.append(exerciseNameSaved);
-//     savedContainer.append(completedExercise);
-//     exerciseNameSaved.textContent = data[index].name;
-//     completedExercise.textContent = "Workout Completed?";
-//     completedExercise.addEventListener('click', function () {
-//       // Retrieve the saved exercise data from local storage
-//       var savedExerciseData = localStorage.getItem('savedExercise');
-    
-//       if (savedExerciseData) {
-//         // Parse the JSON string back to an object
-//         var exerciseData = JSON.parse(savedExerciseData);
-    
-//         // Now you can use exerciseData.name, exerciseData.equipment, and exerciseData.instructions
-//         // to display or process the saved exercise data as needed.
-//       } else {
-//         // Handle the case where no exercise data is found in local storage
-//         console.log("No saved exercise data found.");
-//       }
-//     });
+toggleContent.addEventListener('click', function(){
+  var displayContent = this.nextElementSibling;
+  if (displayContent.style.display === "none") {
+    displayContent.style.display = "block";
+  } else {
+    displayContent.style.display = "none";
+  }
+})

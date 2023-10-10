@@ -43,7 +43,7 @@ hr {
 }
 
 /* TOGGLE STYING */
-.toggle-content {
+.try, .toggle-content {
     width: 80%;
     border: 2px solid black;
     border-radius: 15px;
@@ -61,9 +61,29 @@ hr {
     min-height: 150px;
 }
 
+.try .display-content {
+    border: none;
+}
+
 #cardio .display-content, #strength .display-content, #stretching .display-content {
     width: 75%;
 }
+
+.saved-workout-card {
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2%;
+    margin: 2% 0;
+}
+
+.saved-workout-card h2 {
+    font-size: 50px;
+}
+
+.saved-workout-card h3 {
+    font-size: 25px;
+}
+
 
 
 .workoutpanda {
@@ -73,6 +93,12 @@ hr {
 
 form {
     text-align: center;
+}
+
+form select {
+    padding: 2%;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #search-format, #submit-button {
@@ -95,11 +121,12 @@ form {
     min-height: 100px;
 }
 
-.try, .completed-workouts {
-    width: 40%;
-    min-width: 500px;
-    padding: 0;
-    margin: 0;
+
+.try {
+    padding: 2%;
+    margin: 2% auto;
+    justify-content: center;
+    width: 80%;
 }
 
 
