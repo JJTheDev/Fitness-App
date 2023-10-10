@@ -5,7 +5,7 @@ var results = document.getElementById('results');
 var savedContainer = document.getElementById('saved');
 var selectedDifficulty = "";
 var selectedType = "";
-var savedWorkout = "";
+var savedWorkout = [];
 var favoriteWorkout = "";
 var bookmarkedWorkout = "";
 
@@ -79,24 +79,26 @@ function getApi1(event) {
       });
 
       // Add click event to show the modal and save the exercise
-saveExercise.addEventListener('click', (function (exerciseName) {
-  return function () {
-    savedWorkout = exerciseName;
-    console.log(savedWorkout);
-    showModalWithMessage(exerciseName + " saved above under workouts to try");
-    var listedWorkout = document.createElement('li');
-    var faveExercise = document.createElement('button')
-    Saved.append(listedWorkout);
-    Saved.append(faveExercise);
-    listedWorkout.textContent = savedWorkout;
-    faveExercise.addEventListener('click', (function (listedWorkout) {
-    return function () {
-      bookmarkedWorkout = listedWorkout
-      console.log(bookmarkedWorkout);
-    }
-    }))
-  };
-})(data[i].name)); // Pass the current value of 'i' to the closure
+      saveExercise.addEventListener('click', (function (exerciseName) {
+        return function () {
+          savedWorkout.push(exerciseName); // Push exerciseName to the savedWorkout array
+          localStorage.setItem('savedWorkout', JSON.stringify(savedWorkout));
+          console.log(savedWorkout);
+          showModalWithMessage(exerciseName + " saved under 'workout to try'");
+          var listedWorkout = document.createElement('li');
+          var faveExercise = document.createElement('button');
+          Saved.append(listedWorkout);
+          Saved.append(faveExercise);
+          listedWorkout.textContent = exerciseName; // Use exerciseName here
+          faveExercise.addEventListener('click', (function (listedWorkout) {
+            return function () {
+              bookmarkedWorkout = listedWorkout;
+              console.log(bookmarkedWorkout);
+            };
+          })(exerciseName)); // Pass the current value of 'exerciseName' to the closure
+        };
+      })(data[i].name)); // Pass the current value of 'i' to the closure
+      
 
     }
   });
@@ -113,6 +115,32 @@ function showModalWithMessage(message) {
     modalContainer.style.display = 'none';
   });
 }
+
+function displaysavedWorkout() {
+  var savedContainer = document.getElementById('Saved');
+  savedContainer.innerHTML = ''; // Clear the existing content
+
+  for (var i = 0; i < savedWorkout.length; i++) {
+    var workout = savedWorkout[i];
+    var listedWorkout = document.createElement('li');
+    listedWorkout.textContent = workout;
+    savedContainer.appendChild(listedWorkout);
+  }
+
+}
+
+// Load saved workout from local storage on page load
+(function init() {
+  var storedsavedWorkout = JSON.parse(localStorage.getItem('savedWorkout'));
+  if (storedsavedWorkout !== null) {
+    savedWorkout = storedsavedWorkout;
+    displaysavedWorkout(); // Display saved workout
+  }
+})();
+
+init();
+
+
 // // Add click event to handle workout completion
 
 //     // Create an object to represent the exercise data
