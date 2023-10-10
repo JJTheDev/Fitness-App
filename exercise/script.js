@@ -2,8 +2,12 @@ var submitButton1 = document.getElementById('submit-button');
 var typeDropdown = document.getElementById('type-format');
 var difficultyDropdown = document.getElementById('diff-format');
 var results = document.getElementById('results');
+var savedContainer = document.getElementById('saved');
 var selectedDifficulty = "";
 var selectedType = "";
+var savedWorkout = "";
+var favoriteWorkout = "";
+var bookmarkedWorkout = "";
 
 difficultyDropdown.addEventListener('change', function() {
   selectedDifficulty = difficultyDropdown.value;
@@ -15,12 +19,13 @@ typeDropdown.addEventListener('change', function() {
   console.log(selectedType);
 });
 
-submitButton1.addEventListener('click', function (event) {
-  event.preventDefault();
-  clearResults();
-  getApi1();
+document.addEventListener('click', function (event) {
+  if (event.target.matches('#submit-button')) {
+    event.preventDefault();
+    clearResults();
+    getApi1();
+  }
 });
-
 function clearResults() {
   while (results.firstChild) {
     results.removeChild(results.firstChild);
@@ -55,11 +60,11 @@ function getApi1(event) {
       exerciseName.textContent = data[i].name;
       exerciseEquipment.textContent = "Equipment needed: " + data[i].equipment;
       exerciseInstructions.textContent = data[i].instructions;
-      saveExercise.textContent = 'Save this';
+      saveExercise.textContent = 'Try this';
       exerciseName.style.padding = '10px 20px';
       exerciseName.style.fontSize = '50px';
       exerciseEquipment.style.fontWeight = 'bold';
-      
+
       // Apply styles using JavaScript
       saveExercise.style.backgroundColor = '#007bff'; // Blue background color
       saveExercise.style.color = '#fff'; // White text color
@@ -73,19 +78,34 @@ function getApi1(event) {
         saveExercise.style.backgroundColor = '#0056b3'; // Darker blue on hover
       });
 
-      // Add click event to show the modal
-      saveExercise.addEventListener('click', function() {
-        showModalWithMessage("Exercise saved!");
-      });
+      // Add click event to show the modal and save the exercise
+saveExercise.addEventListener('click', (function (exerciseName) {
+  return function () {
+    savedWorkout = exerciseName;
+    console.log(savedWorkout);
+    showModalWithMessage(exerciseName + " saved above under workouts to try");
+    var listedWorkout = document.createElement('li');
+    var faveExercise = document.createElement('button')
+    Saved.append(listedWorkout);
+    Saved.append(faveExercise);
+    listedWorkout.textContent = savedWorkout;
+    faveExercise.addEventListener('click', (function (listedWorkout) {
+    return function () {
+      bookmarkedWorkout = listedWorkout
+      console.log(bookmarkedWorkout);
+    }
+    }))
+  };
+})(data[i].name)); // Pass the current value of 'i' to the closure
+
     }
   });
 }
-
 function showModalWithMessage(message) {
   var modalContainer = document.getElementById('modal-container');
   var modalMessage = document.getElementById('modal-message');
   modalMessage.textContent = message;
-  modalContainer.style.display = 'block';
+  modalContainer.style.display = 'flex';
 
   // Attach a click event to the close button to hide the modal
   var closeButton = document.getElementById('close-button');
@@ -93,52 +113,36 @@ function showModalWithMessage(message) {
     modalContainer.style.display = 'none';
   });
 }
+// // Add click event to handle workout completion
 
-    // submitButton2.addEventListener('click', function (event) {
-//   event.preventDefault();
-//   let searchformat2 = document.getElementById('search-format2').value.trim();
-//   getApi2(searchformat2);
-// });
+//     // Create an object to represent the exercise data
+//     var exerciseData = {
+//       name: data[index].name,
+//       equipment: data[index].equipment,
+//       instructions: data[index].instructions,
+//     };
 
-// submitButton3.addEventListener('click', function (event) {
-//   event.preventDefault();
-//   let searchformat3 = document.getElementById('search-format3').value.trim();
-//   getApi3(searchformat3);
-// });
+//     // Convert the exercise data to a JSON string and store it in local storage
+//     localStorage.setItem('savedExercise', JSON.stringify(exerciseData));
 
-// function getApi2(event) {
-//   event.preventDefault();
-//   var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=strength&difficulty=' + searchformat2;
-
-
-//   fetch(requestUrl, {
-//     method: 'GET',
-//     headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
-//     }
-//   )
-//     .then(function (response)  {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//     }
-//     )};
-
-//   function getApi3(event) {
-//  event.preventDefault();
-//     var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=stretching&difficulty=' + searchformat3;
-  
-  
-//     fetch(requestUrl, {
-//       method: 'GET',
-//       headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
+//     var exerciseNameSaved = document.createElement('h2');
+//     var completedExercise = document.createElement('button');
+//     savedContainer.append(exerciseNameSaved);
+//     savedContainer.append(completedExercise);
+//     exerciseNameSaved.textContent = data[index].name;
+//     completedExercise.textContent = "Workout Completed?";
+//     completedExercise.addEventListener('click', function () {
+//       // Retrieve the saved exercise data from local storage
+//       var savedExerciseData = localStorage.getItem('savedExercise');
+    
+//       if (savedExerciseData) {
+//         // Parse the JSON string back to an object
+//         var exerciseData = JSON.parse(savedExerciseData);
+    
+//         // Now you can use exerciseData.name, exerciseData.equipment, and exerciseData.instructions
+//         // to display or process the saved exercise data as needed.
+//       } else {
+//         // Handle the case where no exercise data is found in local storage
+//         console.log("No saved exercise data found.");
 //       }
-//     )
-//       .then(function (response)  {
-//         return response.json();
-//       })
-//       .then(function (data) {
-//         console.log(data);
-//       }
-//       )};
-  
+//     });

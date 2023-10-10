@@ -7,6 +7,20 @@
     <title>Healthy Panda</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css"></link>
+    <style>
+        .centered-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Optional: Center vertically in the viewport */
+        }
+
+        .centered-text {
+            font-size: 36px;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col">
@@ -29,15 +43,16 @@
         <h2 id="main-h2">What do you want to work out today?</h2>
 
         <!-- FAVORITES SAVED -->
-        <div class="items-saved">
+        <!--<div class="items-saved">
         <div class="completed-workouts">
             <div class="toggle-content" style="cursor: pointer;">
                 <h2>Completed/Favorite Workouts &#x2938;</h2>
+                <div id="Completed-workouts"></div>
             </div>
         
-            <!-- USER SAVED FAVORITES CARDS -->
+           
             <div class="saved-completed display-content" style="display: none;">
-                <!-- Demo code -->
+
                 <div class="workout-card bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Name: Incline Hammer Curls
                     </h3>
@@ -54,11 +69,12 @@
                 </div>
             </div>
         </div>
-
-        <!-- workouts SAVED TO TRY -->
+    -->
         <div class="try">
-            <div class="toggle-content" style="cursor: pointer;">
-                <h2>Workouts to Try &#x2938;</h2>
+            <div class="toggle-content" style>
+                <h2 class="centered-text">Workouts to Try &#x2938;</h2>
+                <div id="Saved"></div>
+
             </div>
 
             <!-- DEMO CARD -->
@@ -101,8 +117,12 @@
                  
                     </form>
                     <div id="results"></div>
-                    <div id="modal-container"></div>
-                    <div id="modal-message"></div>
+                    <div id="modal-container" class="modal-container">
+                        <div class="modal">
+                          <span id="close-button" class="close-button">×</span>
+                          <p id="modal-message"></p>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
