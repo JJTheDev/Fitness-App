@@ -1,86 +1,126 @@
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2%;
+}
+
+.recipe-card {
+    margin: 1%;
+    width: 400px;
+    height: 100%;
+}
+
+
+
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-
-
-.body{
-/* background-image: url("./images/cute-panda-eat-bamboo-illustration-vector.jpeg"); */
-
-}
-
-
-
-
-
-/* TEST CSS */
-#cardio-results {
+    }
+    
+    
+    
+    
+    .body{
+    /* background-image: url("./images/cute-panda-eat-bamboo-illustration-vector.jpeg"); */
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /* TEST CSS */
+    #cardio-results {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 2% 0;
-}
-
-.workout-card {
+    }
+    
+    
+    .workout-card {
     margin: 1%;
     width: 45%;
     min-width: 400px;
     padding: 2%;
-}
-
-
-
-h2 {
+    }
+    
+    
+    
+    
+    
+    
+    h2 {
     font-size: 24px;
-}
-
-h3 {
+    }
+    
+    
+    h3 {
     font-size: 18px;
-}
-
-/* BACK BUTTON */
-.goBack {
+    }
+    
+    
+    /* BACK BUTTON */
+    .goBack {
     margin: 2% 2%;
-}
-
-.backBtn {
+    }
+    
+    
+    .backBtn {
     padding: 1% 2%;
     border: 1px solid black;
     border-radius: 10px;
     cursor: pointer;
-}
-
-/* HOVER STYLING */
-.backBtn:hover, .toggle-content:hover, #search-format:hover, #submit-button:hover {
+    }
+    
+    
+    /* HOVER STYLING */
+    .backBtn:hover, .toggle-content:hover, #search-format:hover, #submit-button:hover {
     background-color: aqua;
-}
-
-
-
-main {
+    }
+    
+    
+    
+    
+    
+    
+    main {
     padding: 2%;
     justify-content: center;
     margin: auto;
     min-height: 75vh;
     align-items: center;
-
-}
-
-
-#main-h2 {
+    
+    
+    }
+    
+    
+    
+    
+    #main-h2 {
     text-align: center;
     font-size: 30px;
     margin: 2%;
-}
-
-hr {
+    }
+    
+    
+    hr {
     border: 2px solid black;
     margin: 2%;
-}
-
-/* TOGGLE STYING */
-.toggle-content {
+    }
+    
+    
+    /* TOGGLE STYING */
+    .toggle-content {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -88,48 +128,56 @@ hr {
     border-radius: 15px;
     padding: 1%;
     margin: 2% auto;
+    }
     
-}
-
-.display-content {
+    
+    .display-content {
     width: 75%;
     margin: auto;
     margin-bottom: 2%;
     border: 2px solid black;
     border-radius: 15px;
     padding: 2% 1%;
-}
-
-
-.workoutpanda {
+    }
+    
+    
+    
+    
+    .workoutpanda {
     display: flex;
     justify-content: space-between
-}
-
-form {
+    }
+    
+    
+    form {
     text-align: center;
-}
-
-.search-bar{
-display: flex;
-text-align: center;
-flex-direction: column;
-justify-content: center;
-width: 30%;
-
-
-}
-
-#search-format, #submit-button {
+    }
+    
+    
+    .search-bar{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    
+    
+    
+    
+    }
+    
+    
+    #search-format, #submit-button {
     border-radius: 5px;
     height: 55px;
     padding: 0 2%;
     background-color: transparent;
     cursor: pointer;
     border: 2px solid black;
-}
-
-.items-saved {
+    }
+    
+    
+    .items-saved {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
@@ -138,34 +186,42 @@ width: 30%;
     padding: 0;
     justify-content: space-between;
     min-height: 100px;
-}
-
-.try, .completed-workouts {
+    }
+    
+    
+    .try, .completed-workouts {
     width: 50%;
     min-width: 600px;
-}
-
-
-@media only screen and (max-width: 1000px) {
+    }
+    
+    
+    
+    
+    @media only screen and (max-width: 1000px) {
     #headbandpanda-2 {
-      display: none;
+    display: none;
     }
     h1 {
-        margin: 0 2%;
+    margin: 0 2%;
     }
-
+    
+    
     .workoutpanda {
-        display: flex;
-        justify-content: center;
+    display: flex;
+    justify-content: center;
     }
-
+    
+    
     .items-saved {
-        display: block;
-        width: 100%;
+    display: block;
+    width: 100%;
     }
-
+    
+    
     .try, .completed-workouts {
-        width: 100%;
-        min-width: none;
+    width: 100%;
+    min-width: none;
     }
-  }
+    }
+    
+    
