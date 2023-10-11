@@ -1,11 +1,137 @@
-.search-results {
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.workoutpanda {
+  display: flex;
+  justify-content: space-between
+}
+
+/* BACK BUTTON */
+.goBack {
+  margin: 2% 2%;
+}
+
+.backBtn {
+  padding: 1% 2%;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+main {
+  padding: 2%;
+}
+
+#main-h2 {
+  text-align: center;
+  font-size: 30px;
+  margin: 2%;
+}
+
+
+/* HOVER STYLING */
+.backBtn:hover, .toggle-content:hover, #search-format:hover, #submit-button:hover {
+  background-color: aqua;
+}
+
+
+
+#main-h2 {
+  text-align: center;
+  font-size: 30px;
+  margin: 2%;
+  
+}
+
+
+hr {
+  border: 2px solid black;
+  margin: 2%;
+}
+
+/* TOGGLE STYING */
+.toggle-content {
+  width: 80%;
+  border: 2px solid rgb(8, 8, 8);
+  box-shadow: 6px 6px 6px #232222;
+  border-radius: 15px;
+  padding: 2%;
+  margin: 1% auto;
+}
+
+.favorites, .try {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2% auto;
+  justify-content: center;
+  padding: 0;
+  justify-content: space-between;
+  min-height: 100px;
+}
+
+.search-bar input, .user-search button {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 15px;
+  text-align: center;
+  margin: 1% auto;
+}
+
+.search-results, .saved-try, .saved-favorites {
   display: flex;
   flex-wrap: wrap;
   padding: 2%;
+  justify-content: space-evenly;
+  margin: auto;
+  width: 75%;
+  max-width: 1000;
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.search-results {
+  border: none;
 }
 
 .recipe-card {
     margin: 1%;
-    width: 400px;
-    height: 100%;
+    width: 350px;
+    align-content: stretch;
+}
+
+
+
+
+@media only screen and (max-width: 1000px) {
+  #headbandpanda-2 {
+    display: none;
+  }
+  h1 {
+      margin: 0 2%;
+  }
+
+  .workoutpanda {
+      display: flex;
+      justify-content: center;
+  }
+
+.toggle-content {
+  width: 98%;
+}
+
+.favorites, .try {
+  width: 98%;
+}
+
+  .search-results {
+    width: 98%;
+    margin: auto;
+    justify-content: center;
+  }
 }

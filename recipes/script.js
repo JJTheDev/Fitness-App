@@ -228,7 +228,7 @@ for (var i = 0; i < toggleContent.length; i++) {
   toggleContent[i].addEventListener('click', function () {
     var displayContent = this.nextElementSibling;
     if (displayContent.style.display === "none") {
-      displayContent.style.display = "block";
+      displayContent.style.display = "flex";
     } else {
       displayContent.style.display = "none";
     }
