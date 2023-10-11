@@ -1,148 +1,148 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Variables
-    const apiUrl = 'https://api.api-ninjas.com/v1/bucketlist';
-    const apiKey = '0FgMf1TTFfyRhv+gsDu5qA==0A2dfLlQ2Xkp8hYF';
+var submitButton1 = document.getElementById('submit-button');
+var typeDropdown = document.getElementById('type-format');
+var difficultyDropdown = document.getElementById('diff-format');
+var results = document.getElementById('results');
+var savedContainer = document.getElementById('saved');
+var selectedDifficulty = "";
+var selectedType = "";
+var savedWorkout = "";
+var favoriteWorkout = "";
+var bookmarkedWorkout = "";
 
-    // Elements
-    const favoritesToggle = document.querySelector('.completed-workouts .toggle-content');
-    const savedCompleted = document.querySelector('.completed-workouts .saved-completed');
-    const tryToggle = document.querySelector('.try .toggle-content');
-    const savedTry = document.querySelector('.try .saved-try');
-    const cardioToggle = document.querySelector('#cardio .toggle-content');
-    const cardioForm = document.querySelector('#cardio form');
-    const cardioResults = document.querySelector('#cardio-results');
-    const strengthToggle = document.querySelector('#strength .toggle-content');
-    const strengthResults = document.querySelector('#strength-results');
-    const stretchingToggle = document.querySelector('#stretching .toggle-content');
-    const stretchingResults = document.querySelector('#stretching-results');
-
-    // Event Listeners
-    favoritesToggle.addEventListener('click', function() {
-        savedCompleted.style.display = savedCompleted.style.display === 'none' ? 'block' : 'none';
-    });
-
-    tryToggle.addEventListener('click', function() {
-        savedTry.style.display = savedTry.style.display === 'none' ? 'block' : 'none';
-    });
-
-    cardioToggle.addEventListener('click', function() {
-        cardioForm.style.display = cardioForm.style.display === 'none' ? 'block' : 'none';
-    });
-
-    cardioForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const difficulty = document.getElementById('search-format').value;
-        fetchAndDisplayExercises('cardio', difficulty);
-    });
-
-    strengthToggle.addEventListener('click', function() {
-        strengthResults.style.display = strengthResults.style.display === 'none' ? 'block' : 'none';
-        fetchAndDisplayExercises('strength');
-    });
-
-    stretchingToggle.addEventListener('click', function() {
-        stretchingResults.style.display = stretchingResults.style.display === 'none' ? 'block' : 'none';
-        fetchAndDisplayExercises('stretching');
-    });
-
-    // Function to Fetch and Display Exercises
-    const fetchAndDisplayExercises = async (muscle, difficulty) => {
-        try {
-            const response = await axios.get(apiUrl, {
-                headers: { 'X-Api-Key': apiKey },
-                params: { muscle, difficulty },
-            });
-            // Handle the response and update the DOM accordingly
-            console.log(response.data);
-        } catch (error) {
-            console.error('Error fetching exercises:', error.message);
-        }
-    };
+difficultyDropdown.addEventListener('change', function() {
+  selectedDifficulty = difficultyDropdown.value;
+  console.log(selectedDifficulty);
 });
 
-  
+typeDropdown.addEventListener('change', function() {
+  selectedType = typeDropdown.value;
+  console.log(selectedType);
+});
 
-// // script.js
+document.addEventListener('click', function (event) {
+  if (event.target.matches('#submit-button')) {
+    event.preventDefault();
+    clearResults();
+    getApi1();
+  }
+});
+function clearResults() {
+  while (results.firstChild) {
+    results.removeChild(results.firstChild);
+  }
+}
 
-// // Function to fetch and display exercises for a specific muscle
-// async function fetchAndDisplayExercises(muscle) {
-//     try {
-//         const response = await axios.get(`https://api.api-ninjas.com/v1/exercises`);
-//         const exercises = response.data;
+function getApi1(event) {
+  console.log(selectedDifficulty);
+  var requestUrl = 'https://api.api-ninjas.com/v1/exercises?type=' + selectedType + '&difficulty=' + selectedDifficulty;
+  console.log(requestUrl);
+  fetch(requestUrl, {
+    method: 'GET',
+    headers: { 'X-Api-Key': 'rLckepqsgeop/WsCGuoxfA==2FCPCg34ZbuFcqmQ'}
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    for (var i = 0; i < 3; i++) {
+      console.log(data[i].name);
+      console.log(data[i].equipment);
+      console.log(data[i].instructions);
+      console.log(data[i].difficulty);
+      var exerciseName = document.createElement('h2');
+      var exerciseEquipment = document.createElement('h3');
+      var exerciseInstructions = document.createElement('p');
+      var saveExercise = document.createElement('button');
+      results.append(exerciseName);
+      results.append(exerciseEquipment);
+      results.append(exerciseInstructions);
+      results.append(saveExercise);
+      exerciseName.textContent = data[i].name;
+      exerciseEquipment.textContent = "Equipment needed: " + data[i].equipment;
+      exerciseInstructions.textContent = data[i].instructions;
+      saveExercise.textContent = 'Try this';
+      exerciseName.style.padding = '10px 20px';
+      exerciseName.style.fontSize = '50px';
+      exerciseEquipment.style.fontWeight = 'bold';
 
-//         const resultsContainer = document.getElementById(`${muscle}-results`);
-//         resultsContainer.innerHTML = ''; // Clear previous results
+      // Apply styles using JavaScript
+      saveExercise.style.backgroundColor = '#007bff'; // Blue background color
+      saveExercise.style.color = '#fff'; // White text color
+      saveExercise.style.padding = '10px 20px'; // Padding for spacing
+      saveExercise.style.border = 'none'; // Remove the button border
+      saveExercise.style.cursor = 'pointer'; // Show a pointer cursor on hover
+      saveExercise.style.marginTop = '10px'; // Add some top margin to space out the button
 
-//         exercises.forEach((exercise) => {
-//             const exerciseCard = createExerciseCard(exercise);
-//             resultsContainer.appendChild(exerciseCard);
-//         });
+      // Add a hover effect using JavaScript
+      saveExercise.addEventListener('mouseover', function() {
+        saveExercise.style.backgroundColor = '#0056b3'; // Darker blue on hover
+      });
 
-//         resultsContainer.style.display = 'block'; // Show results container
-//     } catch (error) {
-//         console.error('Error fetching data:', error);
-//     }
-// }
+      // Add click event to show the modal and save the exercise
+saveExercise.addEventListener('click', (function (exerciseName) {
+  return function () {
+    savedWorkout = exerciseName;
+    console.log(savedWorkout);
+    showModalWithMessage(exerciseName + " saved above under workouts to try");
+    var listedWorkout = document.createElement('li');
+    var faveExercise = document.createElement('button')
+    Saved.append(listedWorkout);
+    Saved.append(faveExercise);
+    listedWorkout.textContent = savedWorkout;
+    faveExercise.addEventListener('click', (function (listedWorkout) {
+    return function () {
+      bookmarkedWorkout = listedWorkout
+      console.log(bookmarkedWorkout);
+    }
+    }))
+  };
+})(data[i].name)); // Pass the current value of 'i' to the closure
 
-// // Function to create an exercise card
-// function createExerciseCard(exercise) {
-//     const exerciseCard = document.createElement('div');
-//     exerciseCard.classList.add('workout-card', 'bg-white', 'border', 'border-gray-200', 'rounded-lg', 'shadow', 'dark:bg-gray-800', 'dark:border-gray-700');
+    }
+  });
+}
+function showModalWithMessage(message) {
+  var modalContainer = document.getElementById('modal-container');
+  var modalMessage = document.getElementById('modal-message');
+  modalMessage.textContent = message;
+  modalContainer.style.display = 'flex';
 
-//     const title = document.createElement('h3');
-//     title.classList.add('mb-2', 'text-2xl', 'font-bold', 'tracking-tight', 'text-gray-900', 'dark:text-white');
-//     title.textContent = `Name: ${exercise.name}`;
+  // Attach a click event to the close button to hide the modal
+  var closeButton = document.getElementById('close-button');
+  closeButton.addEventListener('click', function () {
+    modalContainer.style.display = 'none';
+  });
+}
+// // Add click event to handle workout completion
 
-//     const details = document.createElement('h5');
-//     details.classList.add('mb-2', 'tracking-tight', 'text-gray-900', 'dark:text-white');
-//     details.innerHTML = `Equipment: ${exercise.equipment} <br> Muscle: ${exercise.muscle}`;
+//     // Create an object to represent the exercise data
+//     var exerciseData = {
+//       name: data[index].name,
+//       equipment: data[index].equipment,
+//       instructions: data[index].instructions,
+//     };
 
-//     const description = document.createElement('p');
-//     description.classList.add('mb-3', 'font-normal', 'text-gray-700', 'dark:text-gray-400');
-//     description.textContent = exercise.description;
+//     // Convert the exercise data to a JSON string and store it in local storage
+//     localStorage.setItem('savedExercise', JSON.stringify(exerciseData));
 
-//     const favoriteButton = document.createElement('button');
-//     favoriteButton.classList.add('favoriteBtn', 'inline-flex', 'items-center', 'px-3', 'py-2', 'text-sm', 'font-medium', 'text-center', 'text-white', 'bg-blue-700', 'rounded-lg', 'hover:bg-blue-800', 'focus:ring-4', 'focus:outline-none', 'focus:ring-blue-300', 'dark:bg-blue-600', 'dark:hover:bg-blue-700', 'dark:focus:ring-blue-800');
-//     favoriteButton.innerHTML = '&#9829;';
-
-//     const removeButton = document.createElement('button');
-//     removeButton.classList.add('removeBtn', 'inline-flex', 'items-center', 'px-3', 'py-2', 'text-sm', 'font-medium', 'text-center', 'text-white', 'bg-blue-700', 'rounded-lg', 'hover:bg-blue-800', 'focus:ring-4', 'focus:outline-none', 'focus:ring-blue-300', 'dark:bg-blue-600', 'dark:hover:bg-blue-700', 'dark:focus:ring-blue-800');
-//     removeButton.textContent = 'delete';
-
-//     // Add event listener for the remove button
-//     removeButton.addEventListener('click', () => {
-//         exerciseCard.remove();
-//         // You can add logic here to remove the exercise from local storage if needed
+//     var exerciseNameSaved = document.createElement('h2');
+//     var completedExercise = document.createElement('button');
+//     savedContainer.append(exerciseNameSaved);
+//     savedContainer.append(completedExercise);
+//     exerciseNameSaved.textContent = data[index].name;
+//     completedExercise.textContent = "Workout Completed?";
+//     completedExercise.addEventListener('click', function () {
+//       // Retrieve the saved exercise data from local storage
+//       var savedExerciseData = localStorage.getItem('savedExercise');
+    
+//       if (savedExerciseData) {
+//         // Parse the JSON string back to an object
+//         var exerciseData = JSON.parse(savedExerciseData);
+    
+//         // Now you can use exerciseData.name, exerciseData.equipment, and exerciseData.instructions
+//         // to display or process the saved exercise data as needed.
+//       } else {
+//         // Handle the case where no exercise data is found in local storage
+//         console.log("No saved exercise data found.");
+//       }
 //     });
-
-//     // Append elements to exercise card
-//     exerciseCard.appendChild(title);
-//     exerciseCard.appendChild(details);
-//     exerciseCard.appendChild(description);
-//     exerciseCard.appendChild(favoriteButton);
-//     exerciseCard.appendChild(removeButton);
-
-//     return exerciseCard;
-// }
-
-// // Event listeners for different exercise categories
-// document.getElementById('cardio').addEventListener('click', () => {
-//     const difficulty = document.getElementById('search-format').value;
-//     fetchAndDisplayExercises('cardio', difficulty);
-// });
-
-// document.getElementById('strength').addEventListener('click', () => {
-//     fetchAndDisplayExercises('strength');
-// });
-
-// document.getElementById('stretching').addEventListener('click', () => {
-//     fetchAndDisplayExercises('stretching');
-// });
-
-// // Event listener for form submission
-// document.getElementById('submit-button').addEventListener('click', (event) => {
-//     event.preventDefault(); // Prevent the default form submission
-//     const difficulty = document.getElementById('search-format').value;
-//     fetchAndDisplayExercises('cardio', difficulty);
-// });
-
