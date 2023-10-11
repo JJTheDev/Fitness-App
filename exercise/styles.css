@@ -43,12 +43,13 @@ hr {
 }
 
 /* TOGGLE STYING */
-.try, .toggle-content{
+.try, .toggle-content {
     width: 80%;
     border: 2px solid black;
     border-radius: 15px;
     padding: 1%;
     margin: 2% auto;
+    max-width: 1200px;
 }
 
 .display-content {
@@ -59,11 +60,19 @@ hr {
     border-radius: 15px;
     padding: 2% 1%;
     min-height: 150px;
-    max-width: 900px;
+    max-width: 1200px;
+}
+
+.try {
+    padding: 2%;
+    margin: 2% auto;
+    justify-content: center;
+    width: 75%;
 }
 
 .try .display-content {
     border: none;
+    width: 100%;
 }
 
 .workouts .display-content {
@@ -75,6 +84,7 @@ hr {
     border-radius: 15px;
     padding: 2%;
     margin: 2% 0;
+    width: 100%;
 }
 
 .saved-workout-card h2 {
@@ -83,14 +93,6 @@ hr {
 
 .saved-workout-card h3 {
     font-size: 25px;
-}
-
-.try .display-content {
-    width: 100%;
-}
-
-.saved-workout-card {
-    width: 100%;
 }
 
 
@@ -128,15 +130,6 @@ form select {
     justify-content: space-between;
     min-height: 100px;
 }
-
-
-.try {
-    padding: 2%;
-    margin: 2% auto;
-    justify-content: center;
-    width: 75%;
-}
-
 
 #cardio-results {
     display: flex;
