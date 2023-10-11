@@ -27,8 +27,11 @@ main {
   padding: 2%;
 }
 
-
-
+#main-h2 {
+  text-align: center;
+  font-size: 30px;
+  margin: 2%;
+}
 
 
 /* HOVER STYLING */
@@ -72,11 +75,11 @@ hr {
   min-height: 100px;
 }
 
-.user-search {
+.user-search, .search-bar {
   max-width: 700px;
 }
 
-.user-search #input, .user-search button {
+.user-search button {
   border-radius: 15px;
 }
 
@@ -86,13 +89,19 @@ hr {
   padding: 2%;
   justify-content: space-evenly;
   margin: auto;
-  width: 80%;
+  width: 75%;
   max-width: 1000;
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.search-results {
+  border: none;
 }
 
 .recipe-card {
     margin: 1%;
-    width: 400px;
+    width: 350px;
     align-content: stretch;
 }
 
