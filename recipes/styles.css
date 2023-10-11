@@ -75,12 +75,12 @@ hr {
   min-height: 100px;
 }
 
-.user-search, .search-bar {
+.search-bar input, .user-search button {
+  width: 100%;
   max-width: 700px;
-}
-
-.user-search button {
   border-radius: 15px;
+  text-align: center;
+  margin: 1% auto;
 }
 
 .search-results, .saved-try, .saved-favorites {
