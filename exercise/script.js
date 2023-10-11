@@ -49,12 +49,18 @@ function getApi1(event) {
       // console.log(data[i].equipment);
       // console.log(data[i].instructions);
       // console.log(data[i].difficulty);
+
       var workoutDiv = document.createElement('div');
       workoutDiv.className = "saved-workout-card"
       var exerciseName = document.createElement('h2');
       var exerciseEquipment = document.createElement('h3');
       var exerciseInstructions = document.createElement('p');
       var saveExercise = document.createElement('button');
+
+      if (data.length === 0){
+        workoutDiv.textContent = "No results found."
+      }
+
       results.append(workoutDiv);
       workoutDiv.append(exerciseName);
       workoutDiv.append(exerciseEquipment);
