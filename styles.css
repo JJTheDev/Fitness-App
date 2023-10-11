@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+.body{
+background-image: url("./images/abstract-geometric_H5CCPV9ZFQ.jpeg");
+
+
+
+}
+
+
 
 header {
   display: flex;
@@ -17,12 +25,13 @@ h1 {
   padding: 0;
 }
 
-header img {
+/* header img {
   height: 50px;
   width: auto;
   border-radius: 5px;
   margin-left: 1%;
-}
+} */
+
 
 main {
   padding: 2%;

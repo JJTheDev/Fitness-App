@@ -1,87 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Healthy Panda</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="styles.css">
-  </head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="styles.css">
+    </link>
+</head>
 
-  <body  class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col"> </body> 
-    <header>
-      <h1>Healthy Panda</h1>
+
+<body class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col">
+    <header class=" h-20 bg-gradient-to-r from-sky-400 to-indigo-800 text-5xl text-center  text-green-300 font-serif"
+        style="height: 100px; padding: 1%">
+
+        <div class="workoutpanda">
+            <img src="../images/headbandpanda.PNG" alt="headbandpanda" class="w-40"
+                style="transform: scalex(-1); height: 80px; width: auto;">
+            <h1>Healthy Panda</h1>
+
+            <img id="headbandpanda-2" src="../images/headbandpanda.PNG" alt="headbandpanda-2" class="w-40"
+                style="height: 80px; width: auto;">
+        </div>
+
     </header>
+    <div class="goBack">
+        <a href="../index.html" class="backBtn"><button> &larr; Back</button></a>
+    </div>
 
     <main>
-      <a href="../index.html"><button>Back</button></a>
 
-      <h2>Search for key words or foods</h2>
+        <!-- RECIPE FAVORITES SAVED -->
+        <div class="favorites">
+            <div class="toggle-content" style="cursor: pointer;">
+                <h3>Favorites &#x2938;</h3>
+            </div>
 
-      <!-- RECIPE FAVORITES SAVED -->
-      <div class="favorites">
-        <div class="toggle-content" style="cursor: pointer;">
-        <h3>Favorites</h3>
-        </div>
-        
-        <!-- USER SAVED FAVORITES CARDS -->
-        <div class="saved-favorites" style="display: none;">
-        </div>
-      </div>
-
-      <!-- RECIPES SAVED TO TRY -->
-      <div class="try">
-        <div class="toggle-content" style="cursor: pointer;">
-        <h3>Meals to Try:</h3>
+            <!-- USER SAVED FAVORITES CARDS -->
+            <div class="saved-favorites" style="display: none;">
+            </div>
         </div>
 
-        <!-- USER SAVED TO TRY CARDS -->
-        <div class="saved-try" style="display: none;">
-        </div>
-      </div>
+        <!-- RECIPES SAVED TO TRY -->
+        <div class="try">
+            <div class="toggle-content" style="cursor: pointer;">
+                <h3>Meals to Try &#x2938;</h3>
+            </div>
 
-      <!-- SEARCH SECTION -->
-      <div class="search-recipes">
-        <!-- USER SEARCH INPUT -->
-        <div class="search-bar">
-          <h2>SEARCH</h2>
-          <button type='submit' id="submit-button">Click Me</button>
-
-          <input type="text" placeholder="Search...">
+            <!-- USER SAVED TO TRY CARDS -->
+            <div class="saved-try" style="display: none;">
+            </div>
         </div>
 
-        <!-- USER SEARCH RESULTS (cards for each recipe will populate div) -->
-        <div class="search-results">
+
+
+        <hr>
+        </hr>
+
+        <!-- SEARCH SECTION -->
+        <div class="search-recipes">
+            <h2 id="main-h2">Search for key words or foods</h2>
+
+            <!-- USER SEARCH INPUT -->
+            <div class="search-bar user-search flex justify-center text-align flex-col container mx-auto">
+                <input type="text" placeholder="pizza, fish, yogurt" id="input"
+                    class=" text-2xl text-center py-4 mt-6 ">
+                <button class="text-2xl bg-sky-300 py-6 mt-6 " type='submit' id="submit-button">Search</button>
+
+            </div>
+
+            <!-- USER SEARCH RESULTS (cards for each recipe will populate div) -->
+            <div class="search-results">
+            </div>
         </div>
-      </div>
 
 
-      <div id="dialog" title="Basic dialog">
-        <p id="dialog-text"></p>
-      </div>
+        <div id="dialog" title="Basic dialog">
+            <p id="dialog-text"></p>
+        </div>
+        </div>
 
     </main>
 
-    <footer>
-      <h5>©Team 15 2023</h5>
+    <footer class="flex flex-col  text-center  py-10">
+        <h5>©Team Panda &#9829; </h5>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <!-- Include Axios -->
+
     <script>
-      $( function() {
-        $( "#dialog" ).dialog({
-          autoOpen: false,
-          resizable: false,
-          height: "auto",
-            width: 500,
-            modal: true,
+        $(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 500,
+                modal: true,
+            });
         });
-      } );
-      </script>
+    </script>
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>

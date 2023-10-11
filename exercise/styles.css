@@ -51,6 +51,7 @@ hr {
 .try, .toggle-content {
     width: 80%;
     border: 2px solid black;
+    box-shadow: 6px 6px 6px #232222;
     border-radius: 15px;
     margin: 2% auto;
     max-width: 1200px;
