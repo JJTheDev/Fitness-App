@@ -1,123 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Healthy Panda</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="styles.css">
-  </head>
+    <link rel="stylesheet" href="styles.css"></link>
+    <title>Healthy Panda</title>
+    
+</head>
+
+
+<body class="   h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col">
+    <header class=" tracking-widest  shadow-xl text-stone-950  h-20 bg-gradient-to-r from-sky-500 to-indigo-900 text-5xl text-center font-serif"
+        style="height: 100px; padding: 1%">
+
+        <div>
+            
+             <h1 class="shadow-xl tracking-widest ">Healthy Panda
+
+           
+
+
+             </h1>
+             
+            
+        </div>
+        <!-- <img class=" float-right opacity-60  " id="headbandpanda-2" src="./images/headbandpanda.PNG" alt="headbandpanda-2" class="w-40" style="height: 200px; width: auto;"> -->
+    </header>
+
+    
+
+
+
+    <div class="goBack">
+        <a href="../index.html" class="backBtn"><button> &larr; Back</button></a>
+    </div>
+
+    
+ 
+ 
+
 
   
 
-  <body  class=" h-14 bg-gradient-to-r from-cyan-400 to-blue-800 font-serif flex-col"> </body> 
-    <header class="h-20 bg-gradient-to-r from-sky-400 to-indigo-800 text-5xl text-center  text-stone-950 font-serif"
-    style="height: 100px; padding: 1%">
-     
-    <div >
-      
-       <h1 class="justify-center  shadow-xl  " >Healthy Panda</h1>
+
+    <main class="justify-center" >
+        
+    
+        <!-- FAVORITES SAVED -->
+        <div 
+          class="items-saved">
+        
+            <div  class="toggle-content" style="cursor: pointer;">
+                <h2 class="text-center text-2xl ">FAVORITES</h2>
+            </div>
+        
+            <!-- USER SAVED FAVORITES CARDS -->
+            
+              
+        </div>
+
+        <!-- workouts SAVED TO TRY -->
+        <div class="try">
+            
+
+            <!-- DEMO CARD -->
+            <div class="saved-try display-content" style="display: none;">
+                <!-- Demo code -->
+               
+            </div>
    
-  </div>
 
-  <img  class=" float-right  opacity-60 "   id="headbandpanda-2" src="./images/eatingpanda.PNG" alt="headbandpanda-2" class="w-40" style="height: 300px; width: auto;">
+            <div class="flex flex-col justify-center   ">
 
-
-    </header>
-
-    <div    class="goBack">
-      <a href="../index.html" class="backBtn"><button>&larr; Back</button></a>
-    </div>
-
-    <main  class= "content-center" >
-     
-
-
-
-      
-
-      <!-- RECIPE FAVORITES SAVED -->
-      <div class="favorites">
-        <div class="toggle-content" style="cursor: pointer;">
-        <h3>Favorites</h3>
-        </div>
+        <hr></hr>
 
         
 
 
-
-        <!-- USER SAVED FAVORITES CARDS -->
-        <div class="saved-favorites" style="display: none;">
-        </div>
-      </div>
-
-      <!-- RECIPES SAVED TO TRY -->
-      <div class="try">
-        <div class="toggle-content" style="cursor: pointer;">
-        <h3>Meals to Try:</h3>
-        </div>
-
-         
-      <div class=" flex justify-center text-3xl  py-20  ">
-        <h2>Search for key words or foods</h2>
-        </div>
         
-      
+        <h2 id="main-h2">Search for key words or foods</h2>
 
+  
+          <input class=" text-2xl text-center py-4    "
+          type="text" placeholder="Search..." >
+          <button   class=" text-2xl bg-sky-300 py-6  ">  SEARCH</button>
+          </div> 
 
-
-
-
-        <!-- USER SAVED TO TRY CARDS -->
-        <div class="saved-try" style="display: none;">
-        </div>
-      </div>
-
-      <!-- SEARCH SECTION -->
-      <div class =" justify-center" class="search-recipes">
-        <!-- USER SEARCH INPUT -->
-        <div class="search-bar">
-          <h2>SEARCH</h2>
-          <input type="text" placeholder="Search...">
-        </div>
-
-          <button type='submit' id="submit-button">Click Me</button>
-
-          
-        </div>
-
-        <!-- USER SEARCH RESULTS (cards for each recipe will populate div) -->
-        <div class="search-results">
-        </div>
-      </div>
-
-
-      <div id="dialog" title="Basic dialog">
-        <p id="dialog-text"></p>
-      </div>
+          <!-- <img 
+          class=" flex float-right opacity-60  " id="headbandpanda-2" src="./images/eatingpanda.PNG" alt="headbandpanda-2" class="w-40" style="height: 400px; width: auto;"> -->
 
     </main>
 
-    <footer>
-      <h5>©Team 15 2023</h5>
+    
+
+
+
+
+    <footer class="flex flex-col  text-center  py-10">
+        <h5>©Team Panda &#9829; </h5>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <!-- Include Axios -->
-    <script>
-      $( function() {
-        $( "#dialog" ).dialog({
-          autoOpen: false,
-          resizable: false,
-          height: "auto",
-            width: 500,
-            modal: true,
-        });
-      } );
-      </script>
-    <script src="script.js"></script>
-  </body>
+    <script src="./script.js"></script>
+</body>
+
 </html>
