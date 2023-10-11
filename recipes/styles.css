@@ -26,7 +26,7 @@ h3 {
 .backBtn:hover, .toggle-content:hover, #search-format:hover, #submit-button:hover {
   background-color: aqua;
 }
-
+/* 
 main {
   padding: 2%;
   justify-content: center;
@@ -34,7 +34,7 @@ main {
   min-height: 75vh;
   
   
-}
+} */
 
 
 #main-h2 {
@@ -43,10 +43,25 @@ main {
   margin: 2%;
   
 }
+/* 
+#input{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+  float: center;
+  margin: 2%;
+
+} */
+
+
+
+
 
 hr {
   border: 2px solid black;
-  margin: 8%;
+  margin: 2%;
 }
 
 /* TOGGLE STYING */
@@ -69,14 +84,14 @@ hr {
 
 
 
-.workoutpanda {
+/* .workoutpanda {
   display: flex;
   justify-content: space-between
-}
+} */
 
-form {
+/* form {
   text-align: center;
-}
+} */
 
 
 
@@ -96,10 +111,10 @@ form {
 
 
 
-
+/* 
 .completed-workouts .toggle-content, .try .toggle-content {
   width: 100%;
-}
+} */
 
 
 
